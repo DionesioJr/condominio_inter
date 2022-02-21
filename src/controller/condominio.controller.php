@@ -7,13 +7,14 @@ class Condominio
         $data['condominios'] = Condominium::index();
         $data['header']['title'] = 'Condomínios';
 
+
         if (empty($data['condominios'])) {
             _Application::applicationView('condominio/empty', $data);
         } else {
             _Application::applicationView('condominio/condominio', $data);
         }
     }
- 
+
     public function cadastro()
     {
         $data = $_SESSION;
@@ -61,26 +62,46 @@ class Condominio
 
     public function save()
     {
-        $data['id'] = trim($_POST['id']) ?? '';
-        $data['nome'] = trim($_POST['nome']) ?? '';
-        $data['idade'] = trim($_POST['idade']) ?? '';
-        $data['peso'] = trim($_POST['peso']) ?? '';
-        $data['altura'] = trim($_POST['altura']) ?? '';
-        $data['sexo'] = trim($_POST['sexo']) ?? '';
-        $data['email'] = trim($_POST['email']) ?? '';
-        $data['senha'] = md5(trim($_POST['senha'])) ?? '';
-        $data['tipo'] = trim($_POST['tipo']) ?? '';
-        $data['status'] = trim($_POST['status']) ?? '';
 
-        $result = Condominium::store($data);
+        $data_address['street'] = trim($_POST['street']) ?? '';
+        $data_address['number'] = trim($_POST['number']) ?? '';
+        $data_address['district'] = trim($_POST['district']) ?? '';
+        $data_address['city'] = trim($_POST['city']) ?? '';
+        $data_address['state'] = trim($_POST['state']) ?? '';
+        $data_address['code'] = trim($_POST['code']) ?? '';
 
-        if (empty($result)) {
-            Alert::error("Falha ao criar conta!");
-        } else {
-            Alert::success("Usuario criado com sucesso!");
+        $address_id = Address::store($data_address);
+
+        $data_condominium['name'] = trim($_POST['name']) ?? '';
+        $data_condominium['description'] = trim($_POST['description']) ?? '';
+        $data_condominium['cnpj'] = trim($_POST['cnpj']) ?? '';
+        $data_condominium['status'] = trim($_POST['status']) ?? 1;
+        $data_condominium['address_id'] = $address_id ?? '';
+
+        if (empty($data_condominium['name'])) {
+            Alert::warning("É necessário adicionar o nome do condomínio!");
+            redirect('condominio/cadastro');
         }
 
-        redirect('condominio');
+        if (empty($data_address['street'])) {
+            Alert::warning("É necessário adicionar o endereço!");
+            redirect('condominio/cadastro');
+        }
+
+
+        $condominium_id = Condominium::store($data_condominium);
+
+        if (empty($condominium_id)) {
+            Alert::error("Falha ao cadastrar condominio!");
+        } else {
+            Alert::success("Condomínio cadastrado com sucesso!");
+        }
+
+        if ($_POST['save'] == '1') {
+            redirect('condominio/cadastro');
+        } else if ($_POST['save'] == '2') {
+            redirect('condominio');
+        }
     }
 
     public function update()

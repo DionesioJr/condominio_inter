@@ -1,86 +1,78 @@
-<div class="offcanvas offcanvas-end w-full w-lg-2/5" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel">
-    <div class="offcanvas-header border-bottom py-4 bg-surface-secondary">
-        <h5 class="offcanvas-title" id="offcanvasCreateLabel">Adicionar condomínio </h5><button type="button" class="btn-close text-reset text-xs" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body vstack gap-5">
-        <div>
-            <label class="form-label" for="formInputExample">Logo</label>
-            <div class="d-flex align-items-center">
-                <a href="#" class="avatar avatar-lg rounded-circle bg-secondary  text-white">
-                    <img src="<?php echo BASE_URL; ?>/assets/img/logo2.png" alt="...">
-                </a>
-                <div class="ms-5">
-                    <label for="file-upload" class="btn btn-sm btn-neutral"><span>Atualizar</span>
-                        <input type="file" name="file-upload" id="file-upload" class="visually-hidden">
-                    </label>
-                    <a href="#" class="btn d-inline-flex btn-sm btn-neutral ms-2 text-danger">
-                        <span class="pe-2"><i class="bi bi-trash"></i> </span>
-                        <span>Remover</span>
-                    </a>
+<form action="<?php echo BASE_URL; ?>/condominio/save" method="post">
+    <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
+        <div class="container-fluid py-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="d-flex align-items-center gap-4">
+                        <div><button type="button" class="btn-close text-xs" aria-label="Close"></button></div>
+                        <div class="vr opacity-20 my-1"></div>
+                        <h1 class="h4 ls-tight">Cadastrar um novo condomínio</h1>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="submit" name="save" value="1" class="btn btn-sm btn-neutral border-base d-none d-md-block"><span>Salvar e cadastrar outro</span></button>
+                        <button type="submit" name="save" value="2" class="btn btn-sm btn-primary"><span>Salvar</span></button>
+                    </div>
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="row g-5">
-            <div class="col-md-12">
-                <div><label class="form-label">Nome</label> <input type="text" name="name" class="form-control"></div>
-            </div>
+    </header>
+    <main class="py-6 bg-surface-secondary">
 
-        </div>
-        <div>
-            <label class="form-label">Descrição</label>
-            <textarea class="form-control" name="description" rows="3"></textarea>
-        </div>
-        <div class="row">
-            <div class="col-md-6"><label class="form-label" for="last_name">Email address</label> <input type="email" class="form-control"></div>
-            <div class="col-md-6"><label class="form-label" for="last_name">Phone number</label> <input type="tel" class="form-control"></div>
-        </div>
-        <div>
-            <div class="form-check form-switch"><input class="form-check-input" type="checkbox" name="switchMakeAdmin" id="switchMakeAdmin"> <label class="form-check-label ms-2" for="switchMakeAdmin">Make admin</label></div>
-        </div>
-        <div class="row">
-            <labal class="form-label" data-bs-toggle="collapse" href="#endereco" role="button" aria-expanded="false" aria-controls="endereco">
-                Endereço
-            </labal>
-            <div class="collapse mt-3" id="endereco">
-                <div class="">
-
-                    <div class="row g-5">
-                        <div class="col-md-10">
-                            <div><label class="form-label">Rua</label> <input type="text" name="name" class="form-control"></div>
-                        </div>
-                        <div class="col-md-2">
-                            <div><label class="form-label">Número</label> <input type="text" name="name" class="form-control"></div>
+        <div class="container-fluid max-w-screen-md vstack gap-5">
+            <div><label class="form-label">Nome</label> <input type="text" name="name" class="form-control" placeholder="Nome do Condomínio"></div>
+            <div><label class="form-label">Descrição</label> <textarea name="description" class="form-control" placeholder="Descrição do condomínio..." rows="2"></textarea></div>
+            <div><label class="form-label">CNPJ</label> <input type="number" name="cnpj" class="form-control" placeholder="Apenas números"></input></div>
+            <hr class="my-0">
+            <div class="vstack gap-4">
+                <div><label class="form-label">Status</label>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="status" checked="checked">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Ativo</h6>
                         </div>
                     </div>
-
-                    <div class="row g-5">
-                        <div class="col-md-6">
-                            <div><label class="form-label">Bairro</label> <input type="text" name="name" class="form-control"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div><label class="form-label">Cidade</label> <input type="text" name="name" class="form-control"></div>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="status">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Inativo</h6>
                         </div>
                     </div>
-
-                    <div class="row g-5">
-                        <div class="col-md-6">
-                            <div><label class="form-label">Estado</label> <input type="text" name="name" class="form-control"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div><label class="form-label">Pais</label> <input type="text" name="name" class="form-control"></div>
+                </div>
+                <hr class="my-0">
+                <div class="row gx-4 gy-5">
+                    <label class="form-label">Endereço</label>
+                    <div class="col-md-6">
+                        <label class="form-label">Rua</label>
+                        <div><input type="text" name="street" class="form-control" placeholder="Rua, AV., etc..."></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><label class="form-label">Número</label>
+                            <div><input type="text" name="number" class="form-control" placeholder="Número da residência"></div>
                         </div>
                     </div>
-
-
-
+                    <div class="col-md-6">
+                        <div><label class="form-label">Bairro</label>
+                            <div><input type="text" name="district" class="form-control" placeholder="EX.: Imbiribeira"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><label class="form-label">Cidade</label>
+                            <div><input type="text" name="city" class="form-control" placeholder="EX.: Recife"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><label class="form-label">Estado</label>
+                            <div><input type="text" name="state" class="form-control" placeholder="EX.: Pernambuco"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><label class="form-label">Código-Postal</label>
+                            <div><input type="text" name="code" class="form-control" placeholder="Somente números"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
-    <div class="modal-footer py-2 bg-surface-secondary">
-        <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">Cancelar</button>
-        <button type="button" class="btn btn-sm btn-primary">Cadastrar</button>
-    </div>
-</div>
+
+    </main>
+</form>

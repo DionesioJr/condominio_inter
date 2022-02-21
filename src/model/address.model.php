@@ -1,6 +1,6 @@
 <?php
 
-class Condominium
+class Address
 {
     public function __construct()
     {
@@ -11,7 +11,7 @@ class Condominium
     {
         global $DB;
         $row = array();
-        $query = $DB->query("SELECT * from condominiums");
+        $query = $DB->query("SELECT * from `address`");
 
 
         if (empty($query)) {
@@ -28,7 +28,7 @@ class Condominium
     {
         global $DB;
         $row = array();
-        $query = $DB->query("SELECT * from condominiums where id = $id");
+        $query = $DB->query("SELECT * from `address` where id = $id");
 
 
         if (empty($query)) {
@@ -44,8 +44,9 @@ class Condominium
     static public function store($data)
     {
         global $DB;
-        $query = $DB->query("INSERT INTO `condominiums` (`name`, `description`, `cnpj`, `status`, `address_id`) 
-        VALUES ('{$data['name']}', '{$data['description']}', '{$data['cnpj']}', '{$data['status']}', '{$data['address_id']}');");
+        $query = $DB->query("INSERT INTO `address` (`street`, `number`, `district`, `city`, `state`, `code`) 
+        VALUES ('{$data['street']}', '{$data['number']}', '{$data['district']}', '{$data['city']}', '{$data['state']}', '{$data['code']}');");
+
 
         if (empty($query)) {
             return false;
@@ -56,7 +57,7 @@ class Condominium
     static public function update($data)
     {
         global $DB;
-        $query = $DB->query("UPDATE `condominiums` SET `name` = '{$data['name']}', `description` = '{$data['description']}', `cnpj` = '{$data['cnpj']}', `status` = '{$data['status']}', `address_id` = '{$data['address_id']}' 
+        $query = $DB->query("UPDATE `address` SET `street` = '{$data['street']}', `number` = '{$data['number']}', `district` = '{$data['district']}', `city` = '{$data['city']}', `state` = '{$data['state']}', `code` = '{$data['code']}'
         WHERE (`id` = '{$data['id']}');");
 
         if (empty($query)) {
@@ -78,7 +79,7 @@ class Condominium
         // }
 
 
-        $query = $DB->query("DELETE from condominiums where id = '$id'");
+        $query = $DB->query("DELETE from `address` where id = '$id'");
 
         if (empty($query)) {
             return false;
