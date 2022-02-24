@@ -68,7 +68,7 @@
                     <label class="form-check-label font-semibold text-muted" for="check-remind-me">Ao criar uma conta significa que você concorda com os Termos e Condições e nossa Política de Privacidade</label>
                   </div>
                 </div>
-                <div><button class="btn btn-primary w-full">Register</button></div>
+                <div><button type="submit" class="btn btn-primary w-full">Register</button></div>
               </form>
             </div>
           </div>

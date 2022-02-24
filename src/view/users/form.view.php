@@ -1,135 +1,70 @@
-<div class="page-header">
-    <div class="row">
-        <div class="col">
-            <h3><?php echo $data['title'] ?></h3>
-        </div>
-        <div class="row justify-content-end">
-            <div class="col">
-                <a href="javascript:history.back()" type="button" class="btn btn-secondary">Voltar</a>
+<form action="<?php echo BASE_URL; ?>/users/save" method="post">
+    <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
+        <div class="container-fluid py-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="d-flex align-items-center gap-4">
+                        <div>
+                            <a href="<?php echo BASE_URL; ?>/users">
+                                <button type="button" class="btn-close text-xs" aria-label="Close"></button>
+                            </a>
+                        </div>
+                        <div class="vr opacity-20 my-1"></div>
+                        <h1 class="h4 ls-tight">Cadastrar um novo usuário</h1>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="submit" name="save" value="1" class="btn btn-sm btn-neutral border-base d-none d-md-block"><span>Salvar e cadastrar outro</span></button>
+                        <button type="submit" name="save" value="2" class="btn btn-sm btn-primary"><span>Salvar</span></button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </header>
+    <main class="py-6 bg-surface-secondary">
 
-<div class=" bs-docs-section">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="bs-component">
-                <form action="<?php echo $data['action']; ?>" method="post">
-                    <input type="hidden" id="id" name="id" value="<?php echo $data['condominio']['id']; ?>">
-
-                    <fieldset>
-                        <legend>Dados Pessoais</legend>
-                        <div class="form-row">
-                            <div class="form-group col-md-8">
-                                <label for="Nome Completo">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $data['condominio']['nome']; ?>" required placeholder="João Alves">
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="Nome Completo">Idade</label>
-                                <input type="number" class="form-control" required id="idade" name="idade" value="<?php echo $data['condominio']['idade']; ?>" placeholder="18">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="Nome Completo">Peso</label>
-                                <input type="number" class="form-control" required id="peso" name="peso" value="<?php echo $data['condominio']['peso']; ?>" placeholder="70">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="Nome Completo">Altura</label>
-                                <input type="number" class="form-control" required id="altura" name="altura" value="<?php echo $data['condominio']['altura']; ?>" placeholder="188">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="sexo">Sexo</label>
-                                <select id="sexo" name=sexo required class="form-control">
-                                    <option value="m" <?php if ($data['condominio']['sexo'] == 'm') echo "selected"; ?>>Masculino</option>
-                                    <option value="f" <?php if ($data['condominio']['sexo'] == 'f') echo "selected"; ?>>Feminino</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="status">Status</label>
-                                <select id="status" name="status" required class="form-control">
-                                    <option value="1" <?php if ($data['condominio']['status'] == '1') echo "selected"; ?>>Ativo</option>
-                                    <option value="2" <?php if ($data['condominio']['status'] == '2') echo "selected"; ?>>Atraso</option>
-                                    <option value="0" <?php if ($data['condominio']['status'] == '0') echo "selected"; ?>>Desativado</option>
-                                </select>
-                            </div>
+        <div class="container-fluid max-w-screen-md vstack gap-5">
+            <div><label class="form-label">Nome completo</label> <input type="text" name="name" class="form-control" placeholder="Digite o nome completo"></div>
+            <div><label class="form-label">Email</label> <input type="email" name="email" class="form-control" placeholder="Digite um email"></input></div>
+            <div><label class="form-label">Senha</label> <input type="password" name="password" class="form-control" placeholder="Digite uma senha"></input></div>
+            <hr class="my-0">
+            <div class="vstack gap-4">
+                <div><label class="form-label">Status</label>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="status" checked="checked">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Ativo</h6>
                         </div>
-                    </fieldset>
-
-                    <br>
-                    <hr>
-                    <br>
-
-
-                    <fieldset>
-                        <legend>Dados da Conta</legend>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $data['condominio']['email']; ?>" placeholder="Email">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="">Senha</label>
-                                <input type="password" class="form-control" id="senha" name="senha" value="<?php echo $data['condominio']['senha']; ?>" placeholder="Senha">
-                            </div>
+                    </div>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="status">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Atrasado</h6>
                         </div>
-
-                        <label for="">Tipo da conta</label>
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="condominio" name="tipo" checked value="1" class="custom-control-input" <?php if ($data['condominio']['tipo'] == 1) echo "checked"; ?>>
-                                    <label class="custom-control-label" for="condominio">Condomínio</label><br>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="admin" name="tipo" value="2" class="custom-control-input" <?php if ($data['condominio']['tipo'] == 2) echo "checked"; ?>>
-                                    <label class="custom-control-label" for="admin">Adminstrador</label><br>
-                                </div>
-
-                            </div>
+                    </div>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="3" name="status">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Desativado</h6>
                         </div>
-
-                    </fieldset>
-
-                    <!-- <br>
-                    <hr>
-                    <br>
-                    <fieldset>
-                        <legend>Endereço</legend>
-                        <div class="form-group">
-                            <label for="inputAddress">Endereço</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
+                    </div>
+                </div>
+                <hr class="my-0">
+            </div>
+            <div class="vstack gap-4">
+                <div><label class="form-label">Tipo de perfil</label>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="is_admin" checked="checked">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Condômino</h6>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">Cidade</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputEstado">Estado</label>
-                                <select id="inputEstado" class="form-control">
-                                    <option selected>Escolher...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="inputCEP">CEP</label>
-                                <input type="text" class="form-control" id="inputCEP">
-                            </div>
+                    </div>
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="is_admin">
+                        <div class="pt-1 form-checked-content">
+                            <h6 class="mb-1 lh-relaxed">Administrador</h6>
                         </div>
-                    </fieldset> -->
-
-                    <br>
-                    <button type="submit" class="btn btn-warning"><?php echo $data['button_submit'] ?></button>
-                </form>
-
+                    </div>
+                </div>
+                <hr class="my-0">
             </div>
         </div>
 
-    </div>
-</div>
+    </main>
+</form>

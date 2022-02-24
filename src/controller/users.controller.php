@@ -9,7 +9,7 @@ class Users
         $data['users'] = User::index();
 
         if (empty($data['users'])) {
-            _Application::applicationView('users/empty', $data);
+            _Application::applicationView('users/empty', $data); //deverá ser 'users/empty' troquei apenas para testar tela de exibição
         } else {
             _Application::applicationView('users/users', $data);
         }
@@ -18,21 +18,17 @@ class Users
     public function cadastro()
     {
         $data = $_SESSION;
-        $data['title'] = "Cadastro de Condomínio";
+        $data['title'] = "Cadastrar novo usuário";
         $data['button_submit'] = "Cadastrar";
         $data['action'] = BASE_URL . '/users/save';
 
 
         $data['users']['id'] = '';
-        $data['users']['nome'] = '';
-        $data['users']['idade'] = '';
-        $data['users']['peso'] = '';
-        $data['users']['altura'] = '';
-        $data['users']['sexo'] = '';
+        $data['users']['name'] = '';
         $data['users']['email'] = '';
-        $data['users']['senha'] = '';
-        $data['users']['tipo'] = '';
+        $data['users']['password'] = '';
         $data['users']['status'] = '';
+        $data['users']['is_admin'] = '';
 
         _Application::applicationView('users/form', $data);
     }
@@ -55,25 +51,39 @@ class Users
         $data['users']['senha'] = '';
 
         $data['title'] = "Editar users";
-        $data['button_submit'] = "Editar Condomínio";
+        $data['button_submit'] = "Editar Usuário";
         $data['action'] = BASE_URL . '/users/update';
         _Application::applicationView('users/form', $data);
     }
 
     public function save()
     {
-        $data['id'] = trim($_POST['id']) ?? '';
-        $data['nome'] = trim($_POST['nome']) ?? '';
-        $data['idade'] = trim($_POST['idade']) ?? '';
-        $data['peso'] = trim($_POST['peso']) ?? '';
-        $data['altura'] = trim($_POST['altura']) ?? '';
-        $data['sexo'] = trim($_POST['sexo']) ?? '';
+        $data['name'] = trim($_POST['name']) ?? '';
         $data['email'] = trim($_POST['email']) ?? '';
-        $data['senha'] = md5(trim($_POST['senha'])) ?? '';
-        $data['tipo'] = trim($_POST['tipo']) ?? '';
-        $data['status'] = trim($_POST['status']) ?? '';
+        $data['password'] = trim($_POST['password']) ?? '';
+        $data['status'] = trim($_POST['status']) ?? 1;
+        $data['is_admin'] = trim($_POST['is_admin']) ?? 1;
 
         $result = User::store($data);
+
+        var_dump($result);
+        exit;
+
+
+        if (empty($data['name'])) {
+            Alert::warning("É necessário adicionar um nome para o usuário!");
+            redirect('users/cadastro');
+        }
+
+        if (empty($data['email'])) {
+            Alert::warning("É necessário adicionar um email!");
+            redirect('users/cadastro');
+        }
+
+        if (empty($data['password'])) {
+            Alert::warning("É necessário adicionar uma senha!");
+            redirect('users/cadastro');
+        }
 
         if (empty($result)) {
             Alert::error("Falha ao criar conta!");
@@ -81,7 +91,12 @@ class Users
             Alert::success("Usuario criado com sucesso!");
         }
 
-        redirect('users');
+
+        if ($_POST['save'] == '1') {
+            redirect('users/cadastro');
+        } else if ($_POST['save'] == '2') {
+            redirect('users');
+        }
     }
 
     public function update()
@@ -130,5 +145,4 @@ class Users
 
         redirect('users');
     }
-
 }
