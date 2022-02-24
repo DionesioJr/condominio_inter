@@ -9,7 +9,7 @@ class Users
         $data['users'] = User::index();
 
         if (empty($data['users'])) {
-            _Application::applicationView('users/empty', $data); //deverá ser 'users/empty' troquei apenas para testar tela de exibição
+            _Application::applicationView('users/empty', $data);
         } else {
             _Application::applicationView('users/users', $data);
         }
