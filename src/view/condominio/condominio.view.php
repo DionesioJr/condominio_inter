@@ -43,7 +43,7 @@
                         <tbody>
 
                             <?php
-                            foreach ($data['condominios'] as $key => $value) {
+                            foreach ($data['condominiums'] as $key => $value) {
 
                             ?>
                                 <tr>

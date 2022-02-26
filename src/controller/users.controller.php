@@ -84,6 +84,7 @@ class Users
         $result = User::store($data);
 
 
+
         if (empty($data['name'])) {
             Alert::warning("É necessário adicionar um nome para o usuário!");
             redirect('users/cadastro');

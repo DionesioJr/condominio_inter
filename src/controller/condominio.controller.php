@@ -4,11 +4,19 @@ class Condominio
     public function index()
     {
         $data = $_SESSION;
-        $data['condominios'] = Condominium::index();
+        $data['condominiums'] = Condominium::index();
         $data['header']['title'] = 'Condomínios';
+        $row = array();
 
+        foreach ($data['condominiums'] as $key => $value) {
 
-        if (empty($data['condominios'])) {
+            $value['status_name'] = condominiohelp::getStatusName($value['status']);
+            $row[] = $value;
+        }
+
+        $data['condominiums'] = $row;
+
+        if (empty($data['condominiums'])) {
             _Application::applicationView('condominio/empty', $data);
         } else {
             _Application::applicationView('condominio/condominio', $data);
