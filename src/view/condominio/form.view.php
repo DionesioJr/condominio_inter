@@ -4,7 +4,11 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="d-flex align-items-center gap-4">
-                        <div><button type="button" class="btn-close text-xs" aria-label="Close"></button></div>
+                        <div>
+                            <a href="<?php echo BASE_URL; ?>/condominio">
+                                <button type="button" class="btn-close text-xs" aria-label="Close"></button>
+                            </a>
+                        </div>
                         <div class="vr opacity-20 my-1"></div>
                         <h1 class="h4 ls-tight">Cadastrar um novo condomínio</h1>
                     </div>

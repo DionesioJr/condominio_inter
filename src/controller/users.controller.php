@@ -6,7 +6,24 @@ class Users
     public function index()
     {
         $data = $_SESSION;
-        $data['users'] = User::index();
+        $Users = User::index();
+        $row = array();
+
+        foreach ($Users as $key => $value) {
+
+            //status
+            $value['status_name'] = UsersHelp::getStatusName($value['status']);
+
+
+            // administração
+            $value['admin_name'] = UsersHelp::getAdminName($value['is_admin']);
+
+
+            $row[] = $value;
+        }
+
+        $data['users'] = $row;
+
 
         if (empty($data['users'])) {
             _Application::applicationView('users/empty', $data);
@@ -65,9 +82,6 @@ class Users
         $data['is_admin'] = trim($_POST['is_admin']) ?? 1;
 
         $result = User::store($data);
-
-        var_dump($result);
-        exit;
 
 
         if (empty($data['name'])) {
@@ -135,6 +149,12 @@ class Users
     public function excluir()
     {
         $id = trim($_GET['id']);
+
+        if (empty($id)) {
+            return false;
+        }
+
+
         $result = User::destroy($id);
 
         if (empty($result)) {

@@ -14,6 +14,8 @@ class User
         $query = $DB->query("SELECT * from users");
 
 
+
+
         if (empty($query)) {
             return false;
         }

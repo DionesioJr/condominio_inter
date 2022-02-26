@@ -46,18 +46,16 @@
                             foreach ($data['condominios'] as $key => $value) {
 
                             ?>
-
                                 <tr>
                                     <td>
-                                        <img alt="..." src="<?php echo BASE_URL; ?>/assets/img/avata.png" class="avatar avatar-sm rounded-circle me-2">
                                         <a class="text-heading text-primary-hover font-semibold" href="#"><?php echo $value['name']; ?></a>
                                     </td>
-                                    <td><?php echo 'Mércia Souza'; ?></td>
-                                    <td><?php echo 'Rodovia 15 - KM 16,5, nº 242, Centro - Paulista - PE - CEP: 53401-445'; ?></td>
-                                    <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['status'] ? 'Ativado' : 'Desativado'; ?></span></td>
+                                    <td><span class="text-heading text-primary-hover font-semibold">marcia</span></td>
+                                    <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['address_id'] ?></span></td>
+                                    <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['status_name'] ?></span></td>
                                     <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>
-                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></button>
+                                        <a href="<?php echo BASE_URL; ?>/condominio/editar/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>
+                                        <a href="<?php echo BASE_URL; ?>/condominio/excluir/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
 
