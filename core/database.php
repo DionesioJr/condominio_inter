@@ -3,7 +3,7 @@ global $DB;
 
 $HOST = 'localhost';
 $DBNAME = 'inter_condominio';
-$USER = '';
+$USER = 'root';
 $PASS = '';
 
 try {

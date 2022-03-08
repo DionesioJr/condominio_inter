@@ -49,7 +49,7 @@
           <p class="text-white text-opacity-80">
             Vem com a gente! Juntos, aumentaremos a rentabilidade da sua administradora usando as melhores ferramentas tecnológicas e soluções financeiras integradas.
         </div>
-        <div class="w-56 h-56 bg-orange-500 rounded-circle position-absolute bottom-0 end-20 transform translate-y-1/3"></div>
+
       </div>
       <div class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative">
         <div class="py-lg-16 px-lg-20">
