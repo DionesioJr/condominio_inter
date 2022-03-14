@@ -44,7 +44,7 @@ class Users
         $data['users']['email'] = '';
         $data['users']['password'] = '';
         $data['users']['status'] = '';
-        $data['users']['is_admin'] = '';
+        $data['users']['is_admin'] = 0;
 
         _Application::applicationView('users/form', $data);
     }
@@ -73,7 +73,7 @@ class Users
         $data['email'] = trim($_POST['email']) ?? '';
         $data['password'] = md5(trim($_POST['password'])) ?? '';
         $data['status'] = trim($_POST['status']) ?? 1;
-        $data['is_admin'] = trim($_POST['is_admin']) ?? 1;
+        $data['is_admin'] = trim($_POST['is_admin']) ?? 0;
 
         $result = User::store($data);
 

@@ -58,13 +58,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="users" name="is_admin" checked value="1" class="custom-control-input" <?php if ($data['users']['is_admin'] == 1) echo "checked"; ?>>
+                                    <input type="radio" id="users" name="is_admin" checked value="0" class="custom-control-input" <?php if ($data['users']['is_admin'] == 0) echo "checked"; ?>>
                                     <label class="custom-control-label" for="users">Condômino</label><br>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="admin" name="is_admin" value="2" class="custom-control-input" <?php if ($data['users']['is_admin'] == 2) echo "checked"; ?>>
+                                    <input type="radio" id="admin" name="is_admin" value="1" class="custom-control-input" <?php if ($data['users']['is_admin'] == 1) echo "checked"; ?>>
                                     <label class="custom-control-label" for="admin">Adminstrador</label><br>
                                 </div>
 
@@ -110,5 +110,5 @@
         <div class="form-check form-switch"><input class="form-check-input" type="checkbox" name="switchMakeAdmin" id="switchMakeAdmin"> <label class="form-check-label ms-2" for="switchMakeAdmin">Make admin</label></div>
     </div>
 </div>
-<div class="modal-footer py-2 bg-surface-secondary"><button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">Close</button> <button type="button" class="btn btn-sm btn-primary">Save</button></div>
+<div class="modal-footer py-2 bg-surface-secondary"><button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">Close</button> <button type="button" class="btn btn-sm btn-success">Save</button></div>
 </div>

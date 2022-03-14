@@ -24,12 +24,8 @@ class Logins
         if (!empty($_POST)) {
             $this->newAccount($_POST);
         }
-        $email = '';
-        if (isset($_GET['email'])) {
-            $email = trim($_GET['email']);
-        }
-        $data['email'] = $email;
 
+        $data = array();
         new LoadingView('authentication/create', $data);
     }
 
@@ -38,7 +34,7 @@ class Logins
     {
 
         if (empty($data)) {
-            Alert::info("Falha ao tentar criar conta");
+            Alert::info("Falha ao criar conta");
             redirect('logins/create');
         }
 
@@ -46,19 +42,38 @@ class Logins
         $data_user['name'] = trim($_POST['user-name']) ?? '';
         $data_user['email'] = trim($_POST['email']) ?? '';
         $data_user['password'] = trim($_POST['password']) ?? '';
-        $data_user['status'] = trim($_POST['status']) ?? 1;
+        $data_user['status'] = 1;
         $data_user['is_admin'] = trim($_POST['is_admin']) ?? '';
-        $User = new User();
-        $User::store($data_user);
+        $users_id = User::store($data_user);
+
+
+        $data_address['street'] =  ' ';
+        $data_address['number'] =  ' ';
+        $data_address['district'] =  '';
+        $data_address['city'] =  '';
+        $data_address['state'] =  '';
+        $data_address['parents'] =  '';
+        $data_address['code'] =  '';
+        $address_id = Address::store($data_address);
+
 
         $data_condominium = array();
         $data_condominium['name'] = trim($_POST['condominium-name']) ?? '';
-        $data_condominium['description'] = trim($_POST['description']) ?? '';
-        $data_condominium['cnpj'] = trim($_POST['cnpj']) ?? '';
-        $data_condominium['status'] = trim($_POST['status']) ?? 1;
-        $data_condominium['address_id'] = trim($_POST['address_id']) ?? '';
-        $Condominium = new Condominium();
-        $Condominium::store($data_condominium);
+        $data_condominium['description'] = '';
+        $data_condominium['cnpj'] =  '';
+        $data_condominium['status'] = 1;
+        $data_condominium['address_id'] = $address_id;
+        $condominiums_id = Condominium::store($data_condominium);
+
+
+        $data_trustee['condominiums_id'] =  $condominiums_id;
+        $data_trustee['users_id'] =  $users_id;
+        $trustee_id = Trustee::store($data_trustee);
+
+        if (empty($data)) {
+            Alert::info("Falha ao criar conta");
+            redirect('logins/create');
+        }
 
         self::authentication($data_user['email'], $data_user['password']);
     }

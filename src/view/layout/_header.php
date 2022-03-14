@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
-                        <a href="#offcanvasCreate" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas"><span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Create</span></a>
+                        <a href="#offcanvasCreate" class="btn btn-sm btn-success" data-bs-toggle="offcanvas"><span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Create</span></a>
                     </div>
                 </div>
             </div>

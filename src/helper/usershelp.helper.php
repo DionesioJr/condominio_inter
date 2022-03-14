@@ -20,11 +20,11 @@ class UsersHelp
 
     public static function getAdminName($admin_id)
     {
-        if ($admin_id == 1) {
+        if ($admin_id == 0) {
             return "Condômino";
         }
 
-        if ($admin_id == 2) {
+        if ($admin_id == 1) {
             return "Administrador";
         }
     }

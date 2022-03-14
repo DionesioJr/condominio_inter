@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
-                        <a href="<?php echo BASE_URL; ?>/condominus/create" class="btn btn-sm btn-primary">
+                        <a href="#" class="btn btn-sm btn-success">
                             <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Enviar mensagen</span>
                         </a>
                     </div>
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer py-2 bg-surface-secondary"><button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">Close</button> <button type="button" class="btn btn-sm btn-primary">Save</button></div>
+        <div class="modal-footer py-2 bg-surface-secondary"><button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">Close</button> <button type="button" class="btn btn-sm btn-su">Save</button></div>
     </div>
     <div class="modal fade" id="modalExport" tabindex="-1" aria-labelledby="modalExport" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -155,7 +155,7 @@
                             </div>
                             <div class="col-sm-auto col-12 ms-sm-auto">
                                 <div class="hstack gap-5 justify-content-end">
-                                    <div><span class="badge bg-soft-success text-success">New product</span></div>
+                                    <div><span class="badge bg-soft-success text-success">Novo</span></div>
                                     <div class="position-relative text-sm"><i class="bi bi-check-circle-fill text-success"></i> <span class="d-inline-block w-8 text-muted text-end">83%</span></div>
                                     <div class="position-relative text-sm"><i class="bi bi-files-alt text-muted me-1"></i> <a href="#" class="text-muted text-primary-hover stretched-link">18</a></div>
                                     <div class="position-relative d-flex rounded-pill align-items-center d-inline-flex bg-secondary bg-secondary-hover bg-opacity-20"><span class="avatar avatar-xs rounded-circle bg-primary text-white">JM</span>
@@ -179,7 +179,7 @@
                             </div>
                             <div class="col-sm-auto col-12 ms-sm-auto">
                                 <div class="hstack gap-5 justify-content-end">
-                                    <div><span class="badge bg-soft-warning text-warning">Important</span></div>
+                                    <div><span class="badge bg-soft-warning text-warning">Importante</span></div>
                                     <div class="position-relative text-sm"><i class="bi bi-check-circle-fill text-success"></i> <span class="d-inline-block w-8 text-muted text-end">74%</span></div>
                                     <div class="position-relative text-sm"><i class="bi bi-files-alt text-muted me-1"></i> <a href="#" class="text-muted text-primary-hover stretched-link">18</a></div>
                                     <div class="position-relative d-flex rounded-pill align-items-center d-inline-flex bg-secondary bg-secondary-hover bg-opacity-20"><span class="avatar avatar-xs rounded-circle bg-primary text-white">JM</span>

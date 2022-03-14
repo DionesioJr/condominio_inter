@@ -4,6 +4,14 @@
       height: 200px;
     }
   }
+
+  /* .nav-link {
+    color: #fff !important;
+  }
+
+  .bi {
+    color: #fff !important;
+  } */
 </style>
 
 <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg scrollbar" id="sidebar">
@@ -11,8 +19,15 @@
     <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand d-inline-block py-lg-2 mb-lg-5 px-lg-6 me-0 d-none d-sm-block d-md-block" href="<?php echo BASE_URL; ?>">
-      <img src="<?php echo BASE_URL; ?>/assets/img/logo2.png" style="height: 13rem;" alt="...">
+    <a class="navbar-brand d-inline-block py-lg-2 mb-lg-5 px-lg-6 me-0 d-none d-sm-block d-md-block text-white " href="<?php echo BASE_URL; ?>">
+      <div class="align-middle">
+
+        <h1 class="font-weight-bold" style="color: #222222 !important;">INTER</h1>
+        <h4 class="font-weight-light" style="color: #222222 !important;">Condomínios</h4>
+
+      </div>
+
+      <!-- <img src="<?php echo BASE_URL; ?>/assets/img/logo2.png" style="height: 13rem;" alt="..."> -->
     </a>
     <div class="navbar-user d-lg-none">
       <div class="dropdown"><a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
