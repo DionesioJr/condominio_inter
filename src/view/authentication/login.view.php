@@ -49,7 +49,6 @@
           <p class="text-white text-opacity-80">
             Vem com a gente! Juntos, aumentaremos a rentabilidade da sua administradora usando as melhores ferramentas tecnológicas e soluções financeiras integradas.
         </div>
-        <div class="w-56 h-56 bg-orange-500 rounded-circle position-absolute bottom-0 end-20 transform translate-y-1/3"></div>
       </div>
       <div class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative">
         <div class="py-lg-16 px-lg-20">
@@ -60,7 +59,7 @@
                 <h1 class="ls-tight font-bolder h2">É bom te ver!</h1>
               </div>
 
-              <form action="<?php echo  BASE_URL; ?>/login/autenticacao" method="POST">
+              <form action="<?php echo  BASE_URL; ?>/logins/authentication" method="POST">
                 <div class="mb-5">
                   <label class="form-label" for="email">Email </label>
                   <input type="email" class="form-control" name="email" id="email" value="admin@gmail.com" placeholder="" />
@@ -84,8 +83,8 @@
           </div>
         </div>
         <div class="position-lg-absolute bottom-0 end-0 my-8 mx-12 text-center text-lg-end">
-          <small>Já tem uma conta? </small>
-          <a href="<?php echo BASE_URL; ?>/login/create" class="text-warning text-sm font-semibold">Inscrever-se</a>
+          <small>Ainda não tem uma conta ? </small>
+          <a href="<?php echo BASE_URL; ?>/logins/create" class="text-warning text-sm font-semibold">Inscrever-se</a>
         </div>
       </div>
     </div>

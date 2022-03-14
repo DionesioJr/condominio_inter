@@ -41,7 +41,7 @@
         ?>
             <div class="row justify-content-end">
                 <div class="col">
-                    <a href="<?php echo BASE_URL; ?>/treino/cadastro/?condominio_id=<?php echo $data['condominio']['id']; ?>" type="button" class="btn btn-warning"> Adicionar Treino</a>
+                    <a href="<?php echo BASE_URL; ?>/treino/create/?condominio_id=<?php echo $data['condominio']['id']; ?>" type="button" class="btn btn-warning"> Adicionar Treino</a>
                 </div>
             </div>
 
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <a href="<?php echo BASE_URL; ?>/treino/excluir/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-danger">Sim, deletar treino</a>
+                                        <a href="<?php echo BASE_URL; ?>/treino/destroy/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-danger">Sim, deletar treino</a>
                                     </div>
                                 </div>
                             </div>

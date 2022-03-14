@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
-                        <a href="<?php echo BASE_URL; ?>/users/cadastro" class="btn btn-sm btn-primary">
+                        <a href="<?php echo BASE_URL; ?>/users/create" class="btn btn-sm btn-primary">
                             <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Cadastrar novo usuário</span>
                         </a>
                     </div>
@@ -52,8 +52,8 @@
                                     <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['admin_name'] ?></span></td>
                                     <td><?php echo $value['email']; ?></td>
                                     <td class="text-end">
-                                        <a href="<?php echo BASE_URL; ?>/users/editar/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>
-                                        <a href="<?php echo BASE_URL; ?>/users/excluir/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
+                                        <a href="<?php echo BASE_URL; ?>/users/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>
+                                        <a href="<?php echo BASE_URL; ?>/users/destroy/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
 

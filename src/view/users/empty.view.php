@@ -4,7 +4,7 @@
         <p class="lead">Dê o primeiro passo e matrícule seu primeiro condominio.</p>
         <hr class="my-4">
         <p class="lead">
-            <a class="btn btn-success btn-lg" href="<?php echo BASE_URL; ?>/condominio/cadastro" role="button">Adicionar condomínios</a>
+            <a class="btn btn-success btn-lg" href="<?php echo BASE_URL; ?>/users/create" role="button">Adicionar usuários</a>
         </p>
         <div class="bs-docs-section">
             <div class="row">

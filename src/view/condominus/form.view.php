@@ -1,4 +1,4 @@
-<form action="<?php echo BASE_URL; ?>/condominio/save" method="post">
+<form action="<?php echo BASE_URL; ?>/condominus/store" method="post">
     <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
         <div class="container-fluid py-4">
             <div class="row align-items-center">
@@ -25,9 +25,9 @@
     <main class="py-6 bg-surface-secondary">
 
         <div class="container-fluid max-w-screen-md vstack gap-5">
-            <div><label class="form-label">Nome</label> <input type="text" name="name" class="form-control" placeholder="Nome do Condomínio"></div>
-            <div><label class="form-label">Descrição</label> <textarea name="description" class="form-control" placeholder="Descrição do condomínio..." rows="2"></textarea></div>
-            <div><label class="form-label">CNPJ</label> <input type="number" name="cnpj" class="form-control" placeholder="Apenas números"></input></div>
+            <div><label class="form-label">Nome</label> <input type="text" name="name" value="<?php echo $data['condominium']['name'] ?? ''; ?>" class="form-control" placeholder="Nome do Condomínio"></div>
+            <div><label class="form-label">Descrição</label> <textarea name="description" <?php echo $data['condominium']['description'] ?? ''; ?> class="form-control" placeholder="Descrição do condomínio..." rows="2"></textarea></div>
+            <div><label class="form-label">CNPJ</label> <input type="number" name="cnpj" <?php echo $data['condominium']['cnpj'] ?? ''; ?> class="form-control" placeholder="Apenas números"></input></div>
             <hr class="my-0">
             <div class="vstack gap-4">
                 <div><label class="form-label">Status</label>

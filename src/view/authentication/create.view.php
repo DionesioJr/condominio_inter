@@ -49,7 +49,6 @@
           <p class="text-white text-opacity-80">
             Vem com a gente! Juntos, aumentaremos a rentabilidade da sua administradora usando as melhores ferramentas tecnológicas e soluções financeiras integradas.
         </div>
-        <div class="w-56 h-56 bg-orange-500 rounded-circle position-absolute bottom-0 end-20 transform translate-y-1/3"></div>
       </div>
       <div class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative">
         <div class="py-lg-16 px-lg-20">
@@ -59,8 +58,13 @@
                 <h1 class="ls-tight font-bolder h2">Crie sua conta</h1>
                 <p class="mt-2">É grátis e fácil</p>
               </div>
-              <form action="<?php echo BASE_URL; ?>/">
-                <div class="mb-5"><label class="form-label" for="name">Nome</label> <input type="text" name="name" class="form-control" id="name"></div>
+              <form action="<?php echo BASE_URL; ?>/logins/create" method="post">
+                <div class="mb-5"><label class="form-label" for="name">Nome do Condomínio</label> <input type="text" name="condominium-name" class="form-control" id="condominium-name"></div>
+
+                <hr>
+                <div class="mb-5"><label class="form-label" for="name">Nome completo</label> <input type="text" name="user-name" class="form-control" id="user-name"></div>
+                <div class="mb-5"><input type="hidden" name="is_admin" value="1" class="form-control" id="name"></div>
+                <div class="mb-5"><label class="form-label" for="name">Você é sindico ? </label> <input type="checkbox" name="is_trustee" class=" form-check-input" checked="checked" id="is_trustee"></div>
                 <div class="mb-5"><label class="form-label" for="email">Email</label> <input type="email" name="email" class="form-control" id="email"></div>
                 <div class="mb-5"><label class="form-label" for="password">Senha</label> <input type="password" name="password" class="form-control" id="password" autocomplete="current-password"></div>
                 <div class="mb-5">
@@ -68,14 +72,14 @@
                     <label class="form-check-label font-semibold text-muted" for="check-remind-me">Ao criar uma conta significa que você concorda com os Termos e Condições e nossa Política de Privacidade</label>
                   </div>
                 </div>
-                <div><button type="submit" class="btn btn-primary w-full">Register</button></div>
+                <div><button type="submit" class="btn btn-primary w-full">Criar conta</button></div>
               </form>
             </div>
           </div>
         </div>
         <div class="position-lg-absolute bottom-0 end-0 my-8 mx-12 text-center text-lg-end">
-          <small>Já tem uma conta? </small>
-          <a href="<?php echo BASE_URL; ?>/login" class="text-warning text-sm font-semibold">Entrar</a>
+          <small>Já tem uma conta?</small>
+          <a href="<?php echo BASE_URL; ?>/logins" class="text-warning text-sm font-semibold">Entrar</a>
         </div>
       </div>
     </div>

@@ -9,15 +9,14 @@ class Users
         $Users = User::index();
         $row = array();
 
+
+
         foreach ($Users as $key => $value) {
 
             //status
             $value['status_name'] = UsersHelp::getStatusName($value['status']);
-
-
             // administração
             $value['admin_name'] = UsersHelp::getAdminName($value['is_admin']);
-
 
             $row[] = $value;
         }
@@ -32,12 +31,12 @@ class Users
         }
     }
 
-    public function cadastro()
+    public function create()
     {
         $data = $_SESSION;
         $data['title'] = "Cadastrar novo usuário";
         $data['button_submit'] = "Cadastrar";
-        $data['action'] = BASE_URL . '/users/save';
+        $data['action'] = BASE_URL . '/users/store';
 
 
         $data['users']['id'] = '';
@@ -50,22 +49,17 @@ class Users
         _Application::applicationView('users/form', $data);
     }
 
-    public function editar()
+    public function edit()
     {
         $id = trim($_GET['id']);
         $data = $_SESSION;
 
         $data['users']['id'] = '';
         $data['users']['nome'] = '';
-        $data['users']['idade'] = '';
-        $data['users']['peso'] = '';
-        $data['users']['altura'] = '';
-        $data['users']['sexo'] = '';
         $data['users']['email'] = '';
         $data['users']['tipo'] = '';
         $data['users']['status'] = '';
         $data['users'] = User::show($id);
-        $data['users']['senha'] = '';
 
         $data['title'] = "Editar users";
         $data['button_submit'] = "Editar Usuário";
@@ -73,11 +67,11 @@ class Users
         _Application::applicationView('users/form', $data);
     }
 
-    public function save()
+    public function store()
     {
         $data['name'] = trim($_POST['name']) ?? '';
         $data['email'] = trim($_POST['email']) ?? '';
-        $data['password'] = trim($_POST['password']) ?? '';
+        $data['password'] = md5(trim($_POST['password'])) ?? '';
         $data['status'] = trim($_POST['status']) ?? 1;
         $data['is_admin'] = trim($_POST['is_admin']) ?? 1;
 
@@ -87,17 +81,17 @@ class Users
 
         if (empty($data['name'])) {
             Alert::warning("É necessário adicionar um nome para o usuário!");
-            redirect('users/cadastro');
+            redirect('users/create');
         }
 
         if (empty($data['email'])) {
             Alert::warning("É necessário adicionar um email!");
-            redirect('users/cadastro');
+            redirect('users/create');
         }
 
         if (empty($data['password'])) {
             Alert::warning("É necessário adicionar uma senha!");
-            redirect('users/cadastro');
+            redirect('users/create');
         }
 
         if (empty($result)) {
@@ -108,7 +102,7 @@ class Users
 
 
         if ($_POST['save'] == '1') {
-            redirect('users/cadastro');
+            redirect('users/create');
         } else if ($_POST['save'] == '2') {
             redirect('users');
         }
@@ -147,7 +141,7 @@ class Users
         redirect('users');
     }
 
-    public function excluir()
+    public function destroy()
     {
         $id = trim($_GET['id']);
 

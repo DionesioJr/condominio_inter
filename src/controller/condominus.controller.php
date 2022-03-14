@@ -1,5 +1,5 @@
 <?php
-class Condominio
+class Condominus
 {
     public function index()
     {
@@ -7,6 +7,8 @@ class Condominio
         $data['condominiums'] = Condominium::index();
         $data['header']['title'] = 'Condomínios';
         $row = array();
+
+        // var_dump($data['condominiums']);exit;
 
         foreach ($data['condominiums'] as $key => $value) {
 
@@ -17,60 +19,57 @@ class Condominio
         $data['condominiums'] = $row;
 
         if (empty($data['condominiums'])) {
-            _Application::applicationView('condominio/empty', $data);
+            _Application::applicationView('condominus/empty', $data);
         } else {
-            _Application::applicationView('condominio/condominio', $data);
+            _Application::applicationView('condominus/condominus', $data);
         }
     }
 
-    public function cadastro()
+    public function create()
     {
         $data = $_SESSION;
         $data['title'] = "Cadastro de condominio";
         $data['button_submit'] = "Cadastrar";
-        $data['action'] = BASE_URL . '/condominio/save';
+        $data['action'] = BASE_URL . '/condominus/store';
 
 
-        $data['condominio']['id'] = '';
-        $data['condominio']['nome'] = '';
-        $data['condominio']['idade'] = '';
-        $data['condominio']['peso'] = '';
-        $data['condominio']['altura'] = '';
-        $data['condominio']['sexo'] = '';
-        $data['condominio']['email'] = '';
-        $data['condominio']['senha'] = '';
-        $data['condominio']['tipo'] = '';
-        $data['condominio']['status'] = '';
+        $data['condominium']['id'] = '';
+        $data['condominium']['nome'] = '';
+        $data['condominium']['email'] = '';
+        $data['condominium']['senha'] = '';
+        $data['condominium']['tipo'] = '';
+        $data['condominium']['status'] = '';
 
-        _Application::applicationView('condominio/form', $data);
+        _Application::applicationView('condominus/form', $data);
     }
 
-    public function editar()
+    public function edit()
     {
         $id = trim($_GET['id']);
         $data = $_SESSION;
 
-        $data['condominio']['id'] = '';
-        $data['condominio']['nome'] = '';
-        $data['condominio']['idade'] = '';
-        $data['condominio']['peso'] = '';
-        $data['condominio']['altura'] = '';
-        $data['condominio']['sexo'] = '';
-        $data['condominio']['email'] = '';
-        $data['condominio']['tipo'] = '';
-        $data['condominio']['status'] = '';
-        $data['condominio'] = Condominium::show($id);
-        $data['condominio']['senha'] = '';
+        $data['condominium']['id'] = '';
+        $data['condominium']['nome'] = '';
+        $data['condominium']['idade'] = '';
+        $data['condominium']['peso'] = '';
+        $data['condominium']['altura'] = '';
+        $data['condominium']['sexo'] = '';
+        $data['condominium']['email'] = '';
+        $data['condominium']['tipo'] = '';
+        $data['condominium']['status'] = '';
+        $data['condominium'] = Condominium::show($id);
+        $data['condominium']['senha'] = '';
 
         $data['title'] = "Editar condominio";
         $data['button_submit'] = "Editar condominio";
-        $data['action'] = BASE_URL . '/condominio/update';
-        _Application::applicationView('condominio/form', $data);
+        $data['action'] = BASE_URL . '/condominus/update';
+        _Application::applicationView('condominus/form', $data);
     }
 
-    public function save()
+    public function store()
     {
-
+        
+        // adicionando endereco
         $data_address['street'] = trim($_POST['street']) ?? '';
         $data_address['number'] = trim($_POST['number']) ?? '';
         $data_address['district'] = trim($_POST['district']) ?? '';
@@ -79,7 +78,9 @@ class Condominio
         $data_address['code'] = trim($_POST['code']) ?? '';
 
         $address_id = Address::store($data_address);
-
+        
+        
+        // criação do condominio
         $data_condominium['name'] = trim($_POST['name']) ?? '';
         $data_condominium['description'] = trim($_POST['description']) ?? '';
         $data_condominium['cnpj'] = trim($_POST['cnpj']) ?? '';
@@ -88,16 +89,18 @@ class Condominio
 
         if (empty($data_condominium['name'])) {
             Alert::warning("É necessário adicionar o nome do condomínio!");
-            redirect('condominio/cadastro');
+            redirect('condominus/create');
+            _Application::applicationView('condominus/form', $data_condominium);
         }
-
-        if (empty($data_address['street'])) {
-            Alert::warning("É necessário adicionar o endereço!");
-            redirect('condominio/cadastro');
-        }
-
-
         $condominium_id = Condominium::store($data_condominium);
+
+
+        // if (empty($data_address['street'])) {
+        //     Alert::warning("É necessário adicionar o endereço!");
+        //     redirect('condominus/create');
+        // }
+
+
 
         if (empty($condominium_id)) {
             Alert::error("Falha ao cadastrar condominio!");
@@ -106,9 +109,9 @@ class Condominio
         }
 
         if ($_POST['save'] == '1') {
-            redirect('condominio/cadastro');
+            redirect('condominus/create');
         } else if ($_POST['save'] == '2') {
-            redirect('condominio');
+            redirect('condominus');
         }
     }
 
@@ -142,10 +145,10 @@ class Condominio
             Alert::success("Usuario criado com sucesso!");
         }
 
-        redirect('condominio');
+        redirect('condominium');
     }
 
-    public function excluir()
+    public function destroy()
     {
         $id = trim($_GET['id']);
         $result = Condominium::destroy($id);
@@ -156,6 +159,6 @@ class Condominio
             Alert::success("Usuario apagado com sucesso!");
         }
 
-        redirect('condominio');
+        redirect('condominium');
     }
 }

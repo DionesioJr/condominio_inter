@@ -4,7 +4,7 @@ class _Application
     static public function applicationView($view = '', $data = false)
     {
 
-        if (Login::isLogged() == false) {
+        if (Logins::isLogged() == false) {
             redirect('login');
         }
 

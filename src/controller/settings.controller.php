@@ -1,5 +1,5 @@
 <?php
-class Configuracao
+class Settings
 {
 
     public function index()
