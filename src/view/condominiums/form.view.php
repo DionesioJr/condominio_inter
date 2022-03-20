@@ -5,7 +5,7 @@
                 <div class="col">
                     <div class="d-flex align-items-center gap-4">
                         <div>
-                            <a href="<?php echo BASE_URL; ?>/condominio">
+                            <a href="<?php echo BASE_URL; ?>/condominiums">
                                 <button type="button" class="btn-close text-xs" aria-label="Close"></button>
                             </a>
                         </div>

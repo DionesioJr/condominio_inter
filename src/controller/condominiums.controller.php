@@ -92,6 +92,7 @@ class Condominiums
             redirect('condominiums/create');
             _Application::applicationView('condominiums/form', $data_condominium);
         }
+
         $condominium_id = Condominium::store($data_condominium);
 
 
@@ -159,6 +160,6 @@ class Condominiums
             Alert::success("Usuario apagado com sucesso!");
         }
 
-        redirect('condominium');
+        redirect('condominiums');
     }
 }
