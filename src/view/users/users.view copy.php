@@ -5,7 +5,7 @@
         </div>
         <div class="row justify-content-end">
             <div class="col">
-                <a href="<?php echo BASE_URL; ?>/condominus/create" type="button" class="btn btn-warning">Adicionar</a>
+                <a href="<?php echo BASE_URL; ?>/condominiums/create" type="button" class="btn btn-warning">Adicionar</a>
             </div>
         </div>
     </div>
@@ -61,8 +61,8 @@
                             <td><span class="badge badge-success"><?php echo $value['status_name']; ?></span></td>
                             <td><span class="badge badge-info"><?php echo $value['tipo_name']; ?></span></td>
                             <td class="text-right">
-                                <a href="<?php echo BASE_URL; ?>/condominus/ficha/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-file-alt"></i></a>
-                                <a href="<?php echo BASE_URL; ?>/condominus/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                <a href="<?php echo BASE_URL; ?>/condominiums/ficha/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-file-alt"></i></a>
+                                <a href="<?php echo BASE_URL; ?>/condominiums/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
                                 <a href="#" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#excluir-modal-<?php echo $value['id']; ?>"><i class="far fa-trash-alt"></i></a>
                                 <!-- <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,10 +71,10 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <a href="<?php echo BASE_URL; ?>/condominus/ficha/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-file-alt"></i></a> Ficha
+                                                <a href="<?php echo BASE_URL; ?>/condominiums/ficha/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fas fa-file-alt"></i></a> Ficha
                                             </li>
                                             <li class="list-group-item">
-                                                <a href="<?php echo BASE_URL; ?>/condominus/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a> Editar
+                                                <a href="<?php echo BASE_URL; ?>/condominiums/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a> Editar
                                             </li>
                                             <li class="list-group-item">
                                                 <a href="#" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#excluir-modal-<?php echo $value['id']; ?>"><i class="far fa-trash-alt"></i></a> Remover
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <a href="<?php echo BASE_URL; ?>/condominus/destroy/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-danger">Sim, deletar condominio</a>
+                                        <a href="<?php echo BASE_URL; ?>/condominiums/destroy/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-danger">Sim, deletar condominio</a>
                                     </div>
                                 </div>
                             </div>

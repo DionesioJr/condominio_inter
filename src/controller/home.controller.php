@@ -7,6 +7,6 @@ class Home
         if (empty($_SESSION['login'])) {
             return false;
         }
-        redirect('condominus');
+        redirect('condominiums');
     }
 }
