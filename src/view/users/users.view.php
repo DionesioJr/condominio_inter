@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
-                        <a href="<?php echo BASE_URL; ?>/users/create" class="btn btn-sm btn-success">
+                        <a href="<?php echo BASE_URL; ?>/users/create" class="btn btn-sm btn-primary">
                             <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Cadastrar novo usuário</span>
                         </a>
                     </div>

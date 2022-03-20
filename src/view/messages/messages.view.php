@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
-                        <a href="#" class="btn btn-sm btn-success">
+                        <a href="#" class="btn btn-sm btn-primary">
                             <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Enviar mensagen</span>
                         </a>
                     </div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="me-auto"><a href="#" class="text-sm font-semibold"><i class="bi bi-clipboard me-2"></i>Copy link</a></div><button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-sm btn-success">Share file</button>
+                    <div class="me-auto"><a href="#" class="text-sm font-semibold"><i class="bi bi-clipboard me-2"></i>Copy link</a></div><button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">Close</button> <button type="button" class="btn btn-sm btn-primary">Share file</button>
                 </div>
             </div>
         </div>

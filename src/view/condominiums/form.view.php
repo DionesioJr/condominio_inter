@@ -16,7 +16,7 @@
                 <div class="col-auto">
                     <div class="hstack gap-2 justify-content-end">
                         <button type="submit" name="save" value="1" class="btn btn-sm btn-neutral border-base d-none d-md-block"><span>Salvar e cadastrar outro</span></button>
-                        <button type="submit" name="save" value="2" class="btn btn-sm btn-success"><span>Salvar</span></button>
+                        <button type="submit" name="save" value="2" class="btn btn-sm btn-primary"><span>Salvar</span></button>
                     </div>
                 </div>
             </div>
