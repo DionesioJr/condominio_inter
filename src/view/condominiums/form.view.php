@@ -1,4 +1,4 @@
-<form action="<?php echo BASE_URL; ?>/condominiums/store" method="post">
+<form action="<?php echo $data['action']; ?>" method="post">
     <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
         <div class="container-fluid py-4">
             <div class="row align-items-center">
@@ -10,7 +10,7 @@
                             </a>
                         </div>
                         <div class="vr opacity-20 my-1"></div>
-                        <h1 class="h4 ls-tight">Cadastrar um novo condomínio</h1>
+                        <h1 class="h4 ls-tight"><?php echo $data['title'] ?></h1>
                     </div>
                 </div>
                 <div class="col-auto">

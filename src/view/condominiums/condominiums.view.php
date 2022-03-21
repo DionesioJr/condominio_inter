@@ -34,7 +34,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th scope="col">Nome</th>
-                                <th scope="col">Sindico</th>
+                                <th scope="col">Descrição</th>
                                 <th scope="col">Endereço</th>
                                 <th scope="col">Status</th>
                                 <th></th>
@@ -44,14 +44,13 @@
 
                             <?php
                             foreach ($data['condominiums'] as $key => $value) {
-
                             ?>
                                 <tr>
                                     <td>
                                         <a class="text-heading text-primary-hover font-semibold" href="#"><?php echo $value['name']; ?></a>
                                     </td>
-                                    <td><span class="text-heading text-primary-hover font-semibold">marcia</span></td>
-                                    <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['address_id'] ?></span></td>
+                                    <td><span class="text-heading text-primary-hover font-semibold"><?php echo $value['description'] ?></span></td>
+                                    <td><span class=" "><?php echo "{$value['address']['street']} {$value['address']['number']}"; ?></span></td>
                                     <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['status_name'] ?></span></td>
                                     <td class="text-end">
                                         <a href="<?php echo BASE_URL; ?>/condominiums/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>

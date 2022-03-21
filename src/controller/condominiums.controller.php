@@ -5,10 +5,13 @@ class Condominiums
     {
         $data = $_SESSION;
         $data['condominiums'] = Condominium::index();
+
+        foreach ($data['condominiums'] as $key => $value) {
+            $data['condominiums'][$key]['address'] = Address::show($value['address_id']);
+        }
+
         $data['header']['title'] = 'Condomínios';
         $row = array();
-
-        // var_dump($data['condominiums']);exit;
 
         foreach ($data['condominiums'] as $key => $value) {
 
@@ -47,22 +50,12 @@ class Condominiums
     {
         $id = trim($_GET['id']);
         $data = $_SESSION;
-
-        $data['condominium']['id'] = '';
-        $data['condominium']['nome'] = '';
-        $data['condominium']['idade'] = '';
-        $data['condominium']['peso'] = '';
-        $data['condominium']['altura'] = '';
-        $data['condominium']['sexo'] = '';
-        $data['condominium']['email'] = '';
-        $data['condominium']['tipo'] = '';
-        $data['condominium']['status'] = '';
-        $data['condominium'] = Condominium::show($id);
-        $data['condominium']['senha'] = '';
-
         $data['title'] = "Editar condominio";
         $data['button_submit'] = "Editar condominio";
         $data['action'] = BASE_URL . '/condominiums/update';
+
+        $data['condominium'] = Condominium::show($id);
+
         _Application::applicationView('condominiums/form', $data);
     }
 
