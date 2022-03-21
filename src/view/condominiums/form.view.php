@@ -5,7 +5,7 @@
                 <div class="col">
                     <div class="d-flex align-items-center gap-4">
                         <div>
-                            <a href="<?php echo BASE_URL; ?>/condominio">
+                            <a href="<?php echo BASE_URL; ?>/condominiums">
                                 <button type="button" class="btn-close text-xs" aria-label="Close"></button>
                             </a>
                         </div>
@@ -16,7 +16,7 @@
                 <div class="col-auto">
                     <div class="hstack gap-2 justify-content-end">
                         <button type="submit" name="save" value="1" class="btn btn-sm btn-neutral border-base d-none d-md-block"><span>Salvar e cadastrar outro</span></button>
-                        <button type="submit" name="save" value="2" class="btn btn-sm btn-success"><span>Salvar</span></button>
+                        <button type="submit" name="save" value="2" class="btn btn-sm btn-primary"><span>Salvar</span></button>
                     </div>
                 </div>
             </div>

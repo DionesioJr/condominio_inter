@@ -81,6 +81,6 @@
     </div>
     <div class="modal-footer py-2 bg-surface-secondary">
         <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">Cancelar</button>
-        <button type="button" class="btn btn-sm btn-success">Cadastrar</button>
+        <button type="button" class="btn btn-sm btn-primary">Cadastrar</button>
     </div>
 </div>
