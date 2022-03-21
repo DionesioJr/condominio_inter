@@ -57,18 +57,19 @@ function router($routes = false)
     $class = $_SESSION['class'];
     $method = $_SESSION['method'];
 
-    if (class_exists($class)) {
 
-        $class_obj = new $class();
-        sessionStart();
+    if (empty($class) || !class_exists($class)) {
+        $routes['default']::index();
+    }
 
-        if (isset($method)) {
-            $class_obj->$method();
-        } else {
-            $class_obj->index();
-        }
+
+    $class_obj = new $class();
+    sessionStart();
+
+    if (isset($method)) {
+        $class_obj->$method();
     } else {
-        Logins::index();
+        $class_obj->index();
     }
 }
 
