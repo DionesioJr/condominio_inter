@@ -66,13 +66,14 @@
                 <div class="mb-5"><input type="hidden" name="is_admin" value="1" class="form-control" id="name"></div>
                 <div class="mb-5"><label class="form-label" for="name">Você é sindico ? </label> <input type="checkbox" name="is_trustee" class=" form-check-input" checked="checked" id="is_trustee"></div>
                 <div class="mb-5"><label class="form-label" for="email">Email</label> <input type="email" name="email" class="form-control" id="email"></div>
-                <div class="mb-5"><label class="form-label" for="password">Senha</label> <input type="password" name="password" class="form-control" id="password" autocomplete="current-password"></div>
+                <div class="mb-5"><label class="form-label" for="password">Senha</label> <input type="password" name="password" onblur="validate();" class="form-control" id="password" autocomplete="current-password"></div>
+                <div class="mb-5"><label class="form-label" for="password2">Confirme à senha</label> <input type="password" name="password2" onblur="validate();" class="form-control" id="password2" autocomplete="current-password"></div>
                 <div class="mb-5">
-                  <div class="form-check"><input class="form-check-input" type="checkbox" name="check_example" id="check-remind-me">
-                    <label class="form-check-label font-semibold text-muted" for="check-remind-me">Ao criar uma conta significa que você concorda com os Termos e Condições e nossa Política de Privacidade</label>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" name="check_example" onclick="validate();" id="check-remind-me">
+                    <label class="form-check-label font-semibold text-muted" onclick="validate();" for="check-remind-me">Ao criar uma conta significa que você concorda com os Termos e Condições e nossa Política de Privacidade</label>
                   </div>
                 </div>
-                <div><button type="submit" class="btn btn-primary w-full">Criar conta</button></div>
+                <div><button type="submit" class="btn btn-primary w-full" id="create-account" disabled>Criar conta</button></div>
               </form>
             </div>
           </div>
@@ -86,5 +87,32 @@
   </div>
 
 </body>
+
+<script>
+  function validate() {
+
+    let password1 = $('#password').val();
+    let password2 = $('#password2').val();
+    let red_me = $('#check-remind-me').is(':checked');
+
+    if (password1 === password2 && red_me === true) {
+      $('#create-account').prop('disabled', false);
+    } else {
+      $('#create-account').prop('disabled', true);
+
+    }
+
+  }
+
+  $(document).ready(function() {
+
+    $("#password2").bind('paste', function(e) {
+      e.preventDefault();
+    });
+
+  });
+</script>
+
+
 
 </html>
