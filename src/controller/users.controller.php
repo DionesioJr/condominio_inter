@@ -46,6 +46,10 @@ class Users
         $data['users']['status'] = '';
         $data['users']['is_admin'] = 0;
 
+        $data['action_name'] = "Salvar usuários";
+        $data['button_submit'] = "Salvar Usuário";
+        $data['action'] = BASE_URL . '/users/store';
+
         _Application::applicationView('users/form', $data);
     }
 
@@ -54,14 +58,28 @@ class Users
         $id = trim($_GET['id']);
         $data = $_SESSION;
 
-        $data['users']['id'] = '';
-        $data['users']['nome'] = '';
-        $data['users']['email'] = '';
-        $data['users']['tipo'] = '';
-        $data['users']['status'] = '';
         $data['users'] = User::show($id);
 
-        $data['title'] = "Editar users";
+        if (empty($data['users'])) {
+            $data['users']['id'] = '';
+            $data['users']['nome'] = '';
+            $data['users']['email'] = '';
+            $data['users']['tipo'] = '';
+            $data['users']['status'] = '';
+        }
+
+        $data['address'] = Address::show($id);
+        if (empty($data['users'])) {
+            $data['address']['street'] = '';
+            $data['address']['number'] = '';
+            $data['address']['district'] = '';
+            $data['address']['city'] = '';
+            $data['address']['state'] = '';
+            $data['address']['code'] = '';
+        }
+
+
+        $data['action_name'] = "Editar usuários";
         $data['button_submit'] = "Editar Usuário";
         $data['action'] = BASE_URL . '/users/update';
         _Application::applicationView('users/form', $data);

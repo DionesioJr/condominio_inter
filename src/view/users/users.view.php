@@ -13,12 +13,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-tabs overflow-x border-0">
-                <li class="nav-item"><a href="#" class="nav-link active">Todos os usuários</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Usuários ativos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Usuários atrasados</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Usuários desativados</a></li>
-            </ul>
+
         </div>
     </div>
 </header>
@@ -27,7 +22,7 @@
         <div class="vstack gap-4">
             <div class="card">
                 <div class="table-responsive">
-                    <table class="table table-hover table-nowrap">
+                    <table class="table table-hover table-nowrap" id="table">
                         <thead class="table-light">
                             <tr>
                                 <th scope="col">Nome</th>
@@ -72,3 +67,9 @@
     </div>
 </main>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+    });
+</script>
