@@ -110,12 +110,7 @@ class Condominiums
         } else {
             Alert::success("Condomínio cadastrado com sucesso!");
         }
-
-        if ($_POST['save'] == '1') {
-            redirect('condominiums/create');
-        } else if ($_POST['save'] == '2') {
-            redirect('condominiums');
-        }
+        redirect('condominiums');
     }
 
     public function update()
