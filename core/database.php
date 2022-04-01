@@ -3,8 +3,8 @@ global $DB;
 
 $HOST = 'localhost';
 $DBNAME = 'inter_condominio';
-$USER = '';
-$PASS = '';
+$USER = 'dionesio';
+$PASS = 'dionesio';
 
 try {
     $DB = new PDO("mysql:host={$HOST};dbname={$DBNAME}", $USER, $PASS);
