@@ -25,9 +25,9 @@
     <main class="py-6 bg-surface-secondary">
 
         <div class="container-fluid max-w-screen-md vstack gap-5">
-            <div><label class="form-label">Nome</label> <input type="text" name="name" value="<?php echo $data['condominium']['name'] ?? ''; ?>" class="form-control" placeholder="Nome do Condomínio"></div>
-            <div><label class="form-label">Descrição</label> <textarea name="description" <?php echo $data['condominium']['description'] ?? ''; ?> class="form-control" placeholder="Descrição do condomínio..." rows="2"></textarea></div>
-            <div><label class="form-label">CNPJ</label> <input type="number" name="cnpj" <?php echo $data['condominium']['cnpj'] ?? ''; ?> class="form-control" placeholder="Apenas números"></input></div>
+            <div><label class="form-label">Nome</label> <input type="text" name="name" value="<?php echo $data['condominiums']['name'] ?? ''; ?>" class="form-control" placeholder="Nome do Condomínio"></div>
+            <div><label class="form-label">Descrição</label> <input name="description" value="<?php echo $data['condominiums']['description'] ?? ''; ?>" class="form-control" placeholder="Descrição do condomínio..." rows="2"></input></div>
+            <div><label class="form-label">CNPJ</label> <input type="number" name="cnpj" value="<?php echo $data['condominiums']['cnpj'] ?? ''; ?>" class="form-control" placeholder="Apenas números"></input></div>
             <hr class="my-0">
             <div class="vstack gap-4">
                 <div><label class="form-label">Status</label>
@@ -47,31 +47,31 @@
                     <label class="form-label">Endereço</label>
                     <div class="col-md-6">
                         <label class="form-label">Rua</label>
-                        <div><input type="text" name="street" class="form-control" placeholder="Rua, AV., etc..."></div>
+                        <div><input type="text" name="street" class="form-control" value="<?php echo $data['address']['street'] ?? ''; ?>" placeholder="Rua, AV., etc..."></div>
                     </div>
                     <div class="col-md-6">
                         <div><label class="form-label">Número</label>
-                            <div><input type="text" name="number" class="form-control" placeholder="Número da residência"></div>
+                            <div><input type="text" name="number" class="form-control" value="<?php echo $data['address']['number'] ?? ''; ?>" placeholder="Número da residência"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div><label class="form-label">Bairro</label>
-                            <div><input type="text" name="district" class="form-control" placeholder="EX.: Imbiribeira"></div>
+                            <div><input type="text" name="district" class="form-control" value="<?php echo $data['address']['district'] ?? ''; ?>" placeholder="EX.: Imbiribeira"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div><label class="form-label">Cidade</label>
-                            <div><input type="text" name="city" class="form-control" placeholder="EX.: Recife"></div>
+                            <div><input type="text" name="city" class="form-control" value="<?php echo $data['address']['city'] ?? ''; ?>" placeholder="EX.: Recife"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div><label class="form-label">Estado</label>
-                            <div><input type="text" name="state" class="form-control" placeholder="EX.: Pernambuco"></div>
+                            <div><input type="text" name="state" class="form-control" value="<?php echo $data['address']['state'] ?? ''; ?>" placeholder="EX.: Pernambuco"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div><label class="form-label">Código-Postal</label>
-                            <div><input type="text" name="code" class="form-control" placeholder="Somente números"></div>
+                            <div><input type="text" name="code" class="form-control" value="<?php echo $data['address']['code'] ?? ''; ?>" placeholder="Somente números"></div>
                         </div>
                     </div>
                 </div>

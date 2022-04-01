@@ -54,7 +54,8 @@ class Condominiums
         $data['button_submit'] = "Editar condominio";
         $data['action'] = BASE_URL . '/condominiums/update';
 
-        $data['condominium'] = Condominium::show($id);
+        $data['condominiums'] = Condominium::show($id);
+        $data['address'] = Address::show($id);
 
         _Application::applicationView('condominiums/form', $data);
     }
