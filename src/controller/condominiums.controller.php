@@ -36,12 +36,20 @@ class Condominiums
         $data['action'] = BASE_URL . '/condominiums/store';
 
 
-        $data['condominium']['id'] = '';
-        $data['condominium']['nome'] = '';
-        $data['condominium']['email'] = '';
-        $data['condominium']['senha'] = '';
-        $data['condominium']['tipo'] = '';
-        $data['condominium']['status'] = '';
+        $data['condominiums']['id'] = '';
+        $data['condominiums']['name'] = '';
+        $data['condominiums']['description'] = '';
+        $data['condominiums']['cnpj'] = '';
+        $data['condominiums']['status'] = '';
+        $data['condominiums']['status_default'] = 1;
+
+
+        $data['address']['street'] = '';
+        $data['address']['number'] = '';
+        $data['address']['district'] = '';
+        $data['address']['city'] = '';
+        $data['address']['state'] = '';
+        $data['address']['code'] = '';
 
         _Application::applicationView('condominiums/form', $data);
     }
@@ -135,12 +143,12 @@ class Condominiums
         $result = Condominium::update($data);
 
         if (empty($result)) {
-            Alert::error("Falha ao criar conta!");
+            Alert::error("Falha ao atualizar Condomínio!");
         } else {
-            Alert::success("Usuario criado com sucesso!");
+            Alert::success("Condomínio atualizado com sucesso!");
         }
 
-        redirect('condominium');
+        redirect('condominiums');
     }
 
     public function destroy()
