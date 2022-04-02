@@ -47,7 +47,7 @@
             Vamos construir algo incrível hoje.
           </h1>
           <p class="text-white text-opacity-80">
-            Vem com a gente! Juntos iremos melhorar o gerenciamento do seu condomínio.
+            Vem com a gente! Juntos iremos realizar o gerenciamento do seu condomínio.
         </div>
       </div>
       <div class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative">

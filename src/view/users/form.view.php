@@ -1,4 +1,4 @@
-<form action="<?php echo $data['actions']; ?>" method="post">
+<form action="<?php echo $data['action']; ?>" method="post">
     <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
         <div class="container-fluid py-4">
             <div class="row align-items-center">
@@ -10,12 +10,12 @@
                             </a>
                         </div>
                         <div class="vr opacity-20 my-1"></div>
-                        <h1 class="h4 ls-tight"><?php echo $data['action_name']; ?></h1>
+                        <h1 class="h4 ls-tight"><?php echo $data['title'] ?></h1>
                     </div>
                 </div>
                 <div class="col-auto">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="submit" name="save" value="2" class="btn btn-sm btn-primary"><span>Salvar</span></button>
+                        <button type="submit" name="save" value="1" class="btn btn-sm btn-primary"><span><?php echo $data['button_submit']; ?></span></button>
                     </div>
                 </div>
             </div>
@@ -30,12 +30,23 @@
             <hr class="my-0">
             <div class="vstack gap-4">
                 <div><label class="form-label">Status do usuario</label>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="status" checked="checked">
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="status" <?php
+
+                                                                                                                                            if ($data['users']['status'] == 1) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } else if (empty($data['users']['status']) && $data['users']['status_default'] == 1) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            }
+                                                                                                                                            ?>>
                         <div class="pt-1 form-checked-content">
                             <h6 class="mb-1 lh-relaxed">Ativo</h6>
                         </div>
                     </div>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="0" name="status">
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="status" <?php if ($data['users']['status'] == 2) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } else if (empty($data['users']['status']) && $data['users']['status_default'] == 2) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } ?>>
                         <div class="pt-1 form-checked-content">
                             <h6 class="mb-1 lh-relaxed">Desativado</h6>
                         </div>
@@ -45,12 +56,20 @@
             </div>
             <div class="vstack gap-4">
                 <div><label class="form-label">Tipo de perfil</label>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="0" name="is_admin" checked="checked">
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="is_admin" <?php if ($data['users']['is_admin'] == 1) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } else if (empty($data['users']['is_admin']) && $data['users']['admin_default'] == 1) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } ?>>
                         <div class="pt-1 form-checked-content">
                             <h6 class="mb-1 lh-relaxed">Condômino</h6>
                         </div>
                     </div>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="is_admin">
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="is_admin" <?php if ($data['users']['is_admin'] == 2) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } else if (empty($data['users']['is_admin']) && $data['users']['admin_default'] == 2) {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } ?>>
                         <div class="pt-1 form-checked-content">
                             <h6 class="mb-1 lh-relaxed">Administrador</h6>
                         </div>

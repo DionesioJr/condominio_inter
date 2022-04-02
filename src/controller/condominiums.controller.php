@@ -118,24 +118,38 @@ class Condominiums
 
         $id = trim($_POST['id']);
         $condominio = Condominium::show($id);
+        $address = Address::show($id);
 
-        $data['id'] = trim($_POST['id']) ?? $condominio['id'];
-        $data['nome'] = trim($_POST['nome']) ?? $condominio['nome'];
-        $data['idade'] = trim($_POST['idade']) ?? $condominio['idade'];
-        $data['peso'] = trim($_POST['peso']) ?? $condominio['peso'];
-        $data['altura'] = trim($_POST['altura']) ?? $condominio['altura'];
-        $data['sexo'] = trim($_POST['sexo']) ?? $condominio['sexo'];
-        $data['email'] = trim($_POST['email']) ?? $condominio['email'];
-        $data['tipo'] = trim($_POST['tipo']) ?? $condominio['tipo'];
-        $data['status'] = trim($_POST['status']) ?? $condominio['status'];
+        // dados do endereço
+        $data_address['street'] = trim($_POST['street']) ?? $address['street'];
+        $data_address['number'] = trim($_POST['number']) ?? $address['number'];
+        $data_address['district'] = trim($_POST['district']) ?? $address['district'];
+        $data_address['city'] = trim($_POST['city']) ?? $address['city'];
+        $data_address['state'] = trim($_POST['state']) ?? $address['state'];
+        $data_address['code'] = trim($_POST['code']) ?? $address['code'];
 
-        if (empty(trim($_POST['senha']))) {
-            $data['senha'] = $condominio['senha'];
-        } else {
-            $data['senha'] = md5(trim($_POST['senha']));
+        $address_id = Address::update($data_address);
+
+
+        // dados do condomínio
+        $data_condominium['name'] = trim($_POST['name']) ?? $condominio['name'];
+        $data_condominium['description'] = trim($_POST['description']) ?? $condominio['description'];
+        $data_condominium['cnpj'] = trim($_POST['cnpj']) ?? $condominio['cnpj'];
+        $data_condominium['status'] = trim($_POST['status']) ?? $condominio['status'];
+        $data_condominium['address_id'] = $address_id ?? $condominio['address_id'];
+
+
+
+        if (empty($data_condominium['name'])) {
+            Alert::warning("É necessário adicionar o nome do condomínio!");
+            redirect('condominiums');
+            _Application::applicationView('condominiums/form', $data_condominium);
         }
 
-        $result = Condominium::update($data);
+        $result = Condominium::update($data_condominium);
+
+        var_dump($result);
+        exit;
 
         if (empty($result)) {
             Alert::error("Falha ao atualizar Condomínio!");
