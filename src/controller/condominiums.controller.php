@@ -188,7 +188,7 @@ class Condominiums
         if (empty($result)) {
             Alert::error("Falha ao tentar apagar a conta!");
         } else {
-            Alert::success("Usuario apagado com sucesso!");
+            Alert::success("Condomínio apagado com sucesso!");
         }
 
         redirect('condominiums');

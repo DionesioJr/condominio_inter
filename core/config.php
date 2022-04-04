@@ -8,7 +8,7 @@
 
 // habilitando o log pra teste
 //DISPLAY_ERRORS = true | false
-const DISPLAY_ERRORS = true;
+const DISPLAY_ERRORS = false;
 
 if (DISPLAY_ERRORS == true) {
     ini_set('display_errors', 1);
