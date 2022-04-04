@@ -10,21 +10,17 @@ class UsersHelp
         }
 
         if ($status_id == 2) {
-            return "Atrasado";
-        }
-
-        if ($status_id == 3) {
-            return "Inativo";
+            return "Desativado";
         }
     }
 
     public static function getAdminName($admin_id)
     {
-        if ($admin_id == 0) {
+        if ($admin_id == 1) {
             return "Condômino";
         }
 
-        if ($admin_id == 1) {
+        if ($admin_id == 2) {
             return "Administrador";
         }
     }

@@ -39,16 +39,13 @@ class Users
         $data['action'] = BASE_URL . '/users/store';
 
 
-        $data['users']['id'] = '';
         $data['users']['name'] = '';
         $data['users']['email'] = '';
         $data['users']['password'] = '';
         $data['users']['status'] = '';
-        $data['users']['is_admin'] = 0;
-
-        $data['action_name'] = "Salvar usuários";
-        $data['button_submit'] = "Salvar Usuário";
-        $data['action'] = BASE_URL . '/users/store';
+        $data['users']['is_admin'] = '';
+        $data['users']['status_default'] = 1;
+        $data['users']['admin_default'] = 1;
 
         _Application::applicationView('users/form', $data);
     }
@@ -57,6 +54,9 @@ class Users
     {
         $id = trim($_GET['id']);
         $data = $_SESSION;
+        $data['title'] = "Editar usuário";
+        $data['button_submit'] = "Editar Usuário";
+        $data['action'] = BASE_URL . '/users/update';
 
         $data['users'] = User::show($id);
 
@@ -82,6 +82,7 @@ class Users
         $data['action_name'] = "Editar usuários";
         $data['button_submit'] = "Editar Usuário";
         $data['action'] = BASE_URL . '/users/update';
+
         _Application::applicationView('users/form', $data);
     }
 
@@ -91,7 +92,7 @@ class Users
         $data['email'] = trim($_POST['email']) ?? '';
         $data['password'] = md5(trim($_POST['password'])) ?? '';
         $data['status'] = trim($_POST['status']) ?? 1;
-        $data['is_admin'] = trim($_POST['is_admin']) ?? 0;
+        $data['is_admin'] = trim($_POST['is_admin']) ?? 1;
 
         $result = User::store($data);
 
@@ -117,13 +118,7 @@ class Users
         } else {
             Alert::success("Usuario criado com sucesso!");
         }
-
-
-        if ($_POST['save'] == '1') {
-            redirect('users/create');
-        } else if ($_POST['save'] == '2') {
-            redirect('users');
-        }
+        redirect('users');
     }
 
     public function update()
