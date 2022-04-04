@@ -32,16 +32,14 @@ class Condominiums
     {
         $data = $_SESSION;
         $data['title'] = "Cadastro de condominio";
-        $data['button_submit'] = "Cadastrar";
+        $data['action_name'] = "Cadastrar";
         $data['action'] = BASE_URL . '/condominiums/store';
 
-
-        $data['condominium']['id'] = '';
-        $data['condominium']['nome'] = '';
-        $data['condominium']['email'] = '';
-        $data['condominium']['senha'] = '';
-        $data['condominium']['tipo'] = '';
+        $data['condominium']['name'] = '';
+        $data['condominium']['description'] = '';
+        $data['condominium']['cnpj'] = '';
         $data['condominium']['status'] = '';
+        $data['condominium']['address_id'] = '';
 
         _Application::applicationView('condominiums/form', $data);
     }
@@ -51,10 +49,12 @@ class Condominiums
         $id = trim($_GET['id']);
         $data = $_SESSION;
         $data['title'] = "Editar condominio";
-        $data['button_submit'] = "Editar condominio";
+        $data['action_name'] = "Editar condominio";
         $data['action'] = BASE_URL . '/condominiums/update';
 
         $data['condominium'] = Condominium::show($id);
+        $data['address'] = Address::show($data['condominium']['address_id']);
+
 
         _Application::applicationView('condominiums/form', $data);
     }
@@ -115,31 +115,22 @@ class Condominiums
         $id = trim($_POST['id']);
         $condominio = Condominium::show($id);
 
+
         $data['id'] = trim($_POST['id']) ?? $condominio['id'];
-        $data['nome'] = trim($_POST['nome']) ?? $condominio['nome'];
-        $data['idade'] = trim($_POST['idade']) ?? $condominio['idade'];
-        $data['peso'] = trim($_POST['peso']) ?? $condominio['peso'];
-        $data['altura'] = trim($_POST['altura']) ?? $condominio['altura'];
-        $data['sexo'] = trim($_POST['sexo']) ?? $condominio['sexo'];
-        $data['email'] = trim($_POST['email']) ?? $condominio['email'];
-        $data['tipo'] = trim($_POST['tipo']) ?? $condominio['tipo'];
+        $data['name'] = trim($_POST['name']) ?? $condominio['name'];
+        $data['description'] = trim($_POST['description']) ?? $condominio['description'];
+        $data['cnpj'] = trim($_POST['cnpj']) ?? $condominio['cnpj'];
         $data['status'] = trim($_POST['status']) ?? $condominio['status'];
-
-        if (empty(trim($_POST['senha']))) {
-            $data['senha'] = $condominio['senha'];
-        } else {
-            $data['senha'] = md5(trim($_POST['senha']));
-        }
-
+        $data['address_id'] = trim($_POST['address_id']) ?? $condominio['address_id'];
         $result = Condominium::update($data);
 
         if (empty($result)) {
-            Alert::error("Falha ao criar conta!");
+            Alert::error("Falha ao atualizar condominio!");
         } else {
-            Alert::success("Usuario criado com sucesso!");
+            Alert::success("Condominio Atualziado com sucesso!");
         }
 
-        redirect('condominium');
+        redirect('Condominiums');
     }
 
     public function destroy()

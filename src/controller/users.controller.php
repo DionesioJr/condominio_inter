@@ -62,7 +62,7 @@ class Users
 
         if (empty($data['users'])) {
             $data['users']['id'] = '';
-            $data['users']['nome'] = '';
+            $data['users']['name'] = '';
             $data['users']['email'] = '';
             $data['users']['tipo'] = '';
             $data['users']['status'] = '';
@@ -128,30 +128,33 @@ class Users
 
     public function update()
     {
-
         $id = trim($_POST['id']);
+
+        if (empty($id)) {
+            Alert::error("Falha ao atualizar usuario!");
+            redirect('users');
+        }
+
         $users = User::show($id);
 
-        $data['id'] = trim($_POST['id']) ?? $users['id'];
-        $data['nome'] = trim($_POST['nome']) ?? $users['nome'];
-        $data['idade'] = trim($_POST['idade']) ?? $users['idade'];
-        $data['peso'] = trim($_POST['peso']) ?? $users['peso'];
-        $data['altura'] = trim($_POST['altura']) ?? $users['altura'];
-        $data['sexo'] = trim($_POST['sexo']) ?? $users['sexo'];
-        $data['email'] = trim($_POST['email']) ?? $users['email'];
-        $data['tipo'] = trim($_POST['tipo']) ?? $users['tipo'];
-        $data['status'] = trim($_POST['status']) ?? $users['status'];
+        $data['id'] = trim($_POST['id'] ?? $users['id']);
+        $data['name'] = trim($_POST['name'] ?? $users['name']);
+        $data['email'] = trim($_POST['email'] ?? $users['email']);
+        $data['password'] = trim($_POST['password'] ?? $users['password']);
+        $data['status'] = trim($_POST['status'] ?? $users['status']);
+        $data['is_admin'] = trim($_POST['is_admin'] ?? $users['is_admin']);
 
-        if (empty(trim($_POST['senha']))) {
-            $data['senha'] = $users['senha'];
+
+        if (empty(trim($_POST['password']))) {
+            $data['password'] = $users['password'];
         } else {
-            $data['senha'] = md5(trim($_POST['senha']));
+            $data['password'] = md5(trim($_POST['password']));
         }
 
         $result = User::update($data);
 
         if (empty($result)) {
-            Alert::error("Falha ao criar conta!");
+            Alert::error("Falha ao atualizar usuario!");
         } else {
             Alert::success("Usuario criado com sucesso!");
         }
