@@ -2,7 +2,6 @@
 class Users
 {
 
-
     public function index()
     {
         $data = $_SESSION;
@@ -101,39 +100,35 @@ class Users
         if (empty($result)) {
             Alert::error("Falha ao criar conta!");
         } else {
-            Alert::success("Usuario criado com sucesso!");
+            Alert::success("Usuário criado com sucesso!");
         }
         redirect('users');
     }
 
     public function update()
     {
+        $id = $_POST['id'];
+        $data['users'] = User::show($id);
 
-        $id = trim($_POST['id']);
-        $users = User::show($id);
+        $data['users']['name'] = trim($_POST['name']) ?? $data['users']['name'];
+        $data['users']['email'] = trim($_POST['email']) ?? $data['users']['email'];
+        $data['users']['password'] = md5(trim($_POST['password'])) ?? $data['users']['password'];
+        $data['users']['status'] = trim($_POST['status']) ?? $data['users']['status'];
+        $data['users']['is_admin'] = trim($_POST['is_admin']) ?? $data['users']['is_admin'];
 
-        $data['id'] = trim($_POST['id']) ?? $users['id'];
-        $data['nome'] = trim($_POST['nome']) ?? $users['nome'];
-        $data['idade'] = trim($_POST['idade']) ?? $users['idade'];
-        $data['peso'] = trim($_POST['peso']) ?? $users['peso'];
-        $data['altura'] = trim($_POST['altura']) ?? $users['altura'];
-        $data['sexo'] = trim($_POST['sexo']) ?? $users['sexo'];
-        $data['email'] = trim($_POST['email']) ?? $users['email'];
-        $data['tipo'] = trim($_POST['tipo']) ?? $users['tipo'];
-        $data['status'] = trim($_POST['status']) ?? $users['status'];
 
-        if (empty(trim($_POST['senha']))) {
-            $data['senha'] = $users['senha'];
+        if (empty(trim($_POST['password']))) {
+            $data['password'] = $data['users']['password'];
         } else {
-            $data['senha'] = md5(trim($_POST['senha']));
+            $data['password'] = md5(trim($_POST['password']));
         }
 
         $result = User::update($data);
 
         if (empty($result)) {
-            Alert::error("Falha ao criar conta!");
+            Alert::error("Falha ao atualizar conta!");
         } else {
-            Alert::success("Usuario criado com sucesso!");
+            Alert::success("Usuário atualizado com sucesso!");
         }
 
         redirect('users');

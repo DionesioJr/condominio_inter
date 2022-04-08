@@ -117,26 +117,26 @@ class Condominiums
     {
 
         $id = trim($_POST['id']);
-        $condominio = Condominium::show($id);
-        $address = Address::show($id);
+        $data['condominiums'] = Condominium::show($id);
+        $data['address'] = Address::show($id);
 
         // dados do endereço
-        $data_address['street'] = trim($_POST['street']) ?? $address['street'];
-        $data_address['number'] = trim($_POST['number']) ?? $address['number'];
-        $data_address['district'] = trim($_POST['district']) ?? $address['district'];
-        $data_address['city'] = trim($_POST['city']) ?? $address['city'];
-        $data_address['state'] = trim($_POST['state']) ?? $address['state'];
-        $data_address['code'] = trim($_POST['code']) ?? $address['code'];
+        $data_address['street'] = trim($_POST['street']) ?? $data['address']['street'];
+        $data_address['number'] = trim($_POST['number']) ?? $data['address']['number'];
+        $data_address['district'] = trim($_POST['district']) ?? $data['address']['district'];
+        $data_address['city'] = trim($_POST['city']) ?? $data['address']['city'];
+        $data_address['state'] = trim($_POST['state']) ?? $data['address']['state'];
+        $data_address['code'] = trim($_POST['code']) ?? $data['address']['code'];
 
         $address_id = Address::update($data_address);
 
 
         // dados do condomínio
-        $data_condominium['name'] = trim($_POST['name']) ?? $condominio['name'];
-        $data_condominium['description'] = trim($_POST['description']) ?? $condominio['description'];
-        $data_condominium['cnpj'] = trim($_POST['cnpj']) ?? $condominio['cnpj'];
-        $data_condominium['status'] = trim($_POST['status']) ?? $condominio['status'];
-        $data_condominium['address_id'] = $address_id ?? $condominio['address_id'];
+        $data_condominium['name'] = trim($_POST['name']) ?? $data['condominiums']['name'];
+        $data_condominium['description'] = trim($_POST['description']) ?? $data['condominiums']['description'];
+        $data_condominium['cnpj'] = trim($_POST['cnpj']) ?? $data['condominiums']['cnpj'];
+        $data_condominium['status'] = trim($_POST['status']) ?? $data['condominiums']['status'];
+        $data_condominium['address_id'] = $address_id ?? $data['condominiums']['address_id'];
 
 
 

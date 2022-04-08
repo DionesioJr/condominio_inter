@@ -1,6 +1,7 @@
 <form action="<?php echo $data['action']; ?>" method="post">
     <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
         <div class="container-fluid py-4">
+
             <div class="row align-items-center">
                 <div class="col">
                     <div class="d-flex align-items-center gap-4">
@@ -24,6 +25,10 @@
     <main class="py-6 bg-surface-secondary">
 
         <div class="container-fluid max-w-screen-md vstack gap-5">
+            <?php if (isset($_GET['id'])) {
+                echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
+            };
+            ?>
             <div><label class="form-label">Nome completo</label> <input type="text" name="name" class="form-control" value="<?php echo $data['users']['name']; ?>" placeholder="Digite o nome completo"></div>
             <div><label class="form-label">Email</label> <input type="email" name="email" class="form-control" value="<?php echo $data['users']['email']; ?>" placeholder="Digite um email"></input></div>
             <div><label class="form-label">Senha</label> <input type="password" name="password" class="form-control" value="<?php echo $data['users']['password']; ?>" placeholder="Digite uma senha"></input></div>

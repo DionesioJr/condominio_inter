@@ -24,6 +24,10 @@
     <main class="py-6 bg-surface-secondary">
 
         <div class="container-fluid max-w-screen-md vstack gap-5">
+            <?php if (isset($_GET['id'])) {
+                echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
+            };
+            ?>
             <div><label class="form-label">Nome</label> <input type="text" name="name" value="<?php echo $data['condominiums']['name']; ?>" class="form-control" placeholder="Nome do Condomínio"></div>
             <div><label class="form-label">Descrição</label> <input name="description" value="<?php echo $data['condominiums']['description']; ?>" class="form-control" placeholder="Descrição do condomínio..." rows="2"></input></div>
             <div><label class="form-label">CNPJ</label> <input type="number" name="cnpj" value="<?php echo $data['condominiums']['cnpj']; ?>" class="form-control" placeholder="Apenas números"></input></div>
