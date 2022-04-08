@@ -1,4 +1,6 @@
 <form action="<?php echo $data['action']; ?>" method="post">
+    <input type="hidden" name="id" value="<?php echo $data['condominiums']['id']; ?>">
+
     <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
         <div class="container-fluid py-4">
             <div class="row align-items-center">
@@ -10,7 +12,7 @@
                             </a>
                         </div>
                         <div class="vr opacity-20 my-1"></div>
-                        <h1 class="h4 ls-tight"><?php echo $data['title'] ?></h1>
+                        <h1 class="h4 ls-tight"><?php echo $data['action_name'] ?></h1>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -62,6 +64,7 @@
                 <hr class="my-0">
                 <div class="row gx-4 gy-5">
                     <label class="form-label">Endereço</label>
+                    <input type="hidden" name="address_id" value="<?php echo $data['address']['id']; ?>">
                     <div class="col-md-6">
                         <label class="form-label">Rua</label>
                         <div><input type="text" name="street" class="form-control" value="<?php echo $data['address']['street']; ?>" placeholder="Rua, AV., etc..."></div>

@@ -61,11 +61,26 @@ class Users
 
         if (empty($data['users'])) {
             $data['users']['id'] = '';
-            $data['users']['nome'] = '';
+            $data['users']['name'] = '';
             $data['users']['email'] = '';
             $data['users']['tipo'] = '';
             $data['users']['status'] = '';
         }
+
+        $data['address'] = Address::show($id);
+        if (empty($data['users'])) {
+            $data['address']['street'] = '';
+            $data['address']['number'] = '';
+            $data['address']['district'] = '';
+            $data['address']['city'] = '';
+            $data['address']['state'] = '';
+            $data['address']['code'] = '';
+        }
+
+
+        $data['action_name'] = "Editar usuários";
+        $data['button_submit'] = "Editar Usuário";
+        $data['action'] = BASE_URL . '/users/update';
 
         _Application::applicationView('users/form', $data);
     }
@@ -107,18 +122,25 @@ class Users
 
     public function update()
     {
-        $id = $_POST['id'];
-        $data['users'] = User::show($id);
+        $id = trim($_POST['id']);
 
-        $data['users']['name'] = trim($_POST['name']) ?? $data['users']['name'];
-        $data['users']['email'] = trim($_POST['email']) ?? $data['users']['email'];
-        $data['users']['password'] = md5(trim($_POST['password'])) ?? $data['users']['password'];
-        $data['users']['status'] = trim($_POST['status']) ?? $data['users']['status'];
-        $data['users']['is_admin'] = trim($_POST['is_admin']) ?? $data['users']['is_admin'];
+        if (empty($id)) {
+            Alert::error("Falha ao atualizar usuario!");
+            redirect('users');
+        }
+
+        $users = User::show($id);
+
+        $data['id'] = trim($_POST['id'] ?? $users['id']);
+        $data['name'] = trim($_POST['name'] ?? $users['name']);
+        $data['email'] = trim($_POST['email'] ?? $users['email']);
+        $data['password'] = trim($_POST['password'] ?? $users['password']);
+        $data['status'] = trim($_POST['status'] ?? $users['status']);
+        $data['is_admin'] = trim($_POST['is_admin'] ?? $users['is_admin']);
 
 
         if (empty(trim($_POST['password']))) {
-            $data['password'] = $data['users']['password'];
+            $data['password'] = $users['password'];
         } else {
             $data['password'] = md5(trim($_POST['password']));
         }
@@ -126,7 +148,7 @@ class Users
         $result = User::update($data);
 
         if (empty($result)) {
-            Alert::error("Falha ao atualizar conta!");
+            Alert::error("Falha ao atualizar usuario!");
         } else {
             Alert::success("Usuário atualizado com sucesso!");
         }

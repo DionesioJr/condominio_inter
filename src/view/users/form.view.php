@@ -1,4 +1,5 @@
 <form action="<?php echo $data['action']; ?>" method="post">
+    <input type="hidden" name="id" value="<?php echo $data['users']['id']; ?>">
     <header class="position-sticky top-0 overlap-10 bg-surface-primary border-bottom">
         <div class="container-fluid py-4">
 

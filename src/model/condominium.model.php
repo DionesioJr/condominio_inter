@@ -62,7 +62,7 @@ class Condominium
         if (empty($query)) {
             return false;
         }
-        return $DB->lastInsertId();
+        return $data['id'];
     }
 
     static public function destroy($id)

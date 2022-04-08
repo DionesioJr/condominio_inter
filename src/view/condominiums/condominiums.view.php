@@ -21,6 +21,7 @@
         </div>
     </div>
 </header>
+
 <main class="py-6 bg-surface-secondary">
     <div class="container-fluid">
         <div class="vstack gap-4">
@@ -55,6 +56,37 @@
                                     <td class="text-end">
                                         <a href="<?php echo BASE_URL; ?>/condominiums/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>
                                         <a href="<?php echo BASE_URL; ?>/condominiums/destroy/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#excluir-modal-<?php echo $value['id']; ?>"><i class="far fa-trash-alt"></i></button>
+
+
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="excluir-modal-<?php echo $value['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Você quer deletar este condomínio ?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="col-sm-12 text-center">
+
+                                                            <p>Atenção! Ao excluir todos os dados serão apagados.</p>
+
+                                                            <br />
+                                                            <img src="<?php echo BASE_URL; ?>/assets/img/illustration/undraw_warning_cyit.svg" width="200px" class="img-responsive" alt="">
+                                                            <br />
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <a href="<?php echo BASE_URL; ?>/condominiums/destroy/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-danger">Sim, deletar condomínio</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
 
