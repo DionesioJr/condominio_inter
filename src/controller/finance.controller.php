@@ -9,11 +9,11 @@ class Finance
         $Users = Financial::index();
         $row = array();
 
-
-
         foreach ($Users as $key => $value) {
+            $value['status_name'] = $value['status'] ? '<span class="badge bg-soft-success text-success">Pago</span>' : '<span class="badge bg-soft-warning text-warning">Pendente</span>';
 
-
+            $date = date_create($value['due_date']);
+            $value['due_date'] = date_format($date, "d/m/Y");
             $row[] = $value;
         }
 
@@ -38,8 +38,10 @@ class Finance
         $data['financial']['name'] = '';
         $data['financial']['description'] = '';
         $data['financial']['cost'] = '';
+        $data['financial']['status'] = 0;
         $data['financial']['due_date'] = date("Y-m-d");
         $data['financial']['additional_charge'] = '';
+        $data['financial']['status_default'] = 0;
 
         _Application::applicationView('financial/form', $data);
     }
@@ -62,6 +64,8 @@ class Finance
 
         $date = date_create($data['financial']['due_date']);
         $data['financial']['due_date'] = date_format($date, 'Y-m-d');
+        $data['financial']['status_default'] = 0;
+
 
         _Application::applicationView('financial/form', $data);
     }
@@ -71,13 +75,11 @@ class Finance
         $data['name'] = trim($_POST['name'] ?? '');
         $data['description'] = trim($_POST['description'] ?? '');
         $data['cost'] = trim($_POST['cost'] ?? '');
+        $data['status']  =  (int) $_POST['status'];
         $data['due_date'] = trim($_POST['due_date'] ?? date("Y-m-d"));
         $data['additional_charge'] = trim($_POST['additional_charge'] ?? '');
 
         $result = Financial::store($data);
-
-       
-
 
         if (empty($result)) {
             Alert::warning("Falha ao adicionar financeiro!");
@@ -112,6 +114,7 @@ class Finance
         $data['name'] = trim($_POST['name'] ?? $financial['name']);
         $data['description'] = trim($_POST['description'] ?? $financial['description']);
         $data['cost'] = trim($_POST['cost'] ?? $financial['cost']);
+        $data['status']  =  (int) $_POST['status'];
         $data['due_date'] = trim($_POST['due_date'] ?? $financial['due_date']);
         $data['additional_charge'] = trim($_POST['additional_charge'] ?? $financial['additional_charge']);
 

@@ -30,7 +30,7 @@
                                 <th scope="col">Custo</th>
                                 <th scope="col">Custo extra</th>
                                 <th scope="col">Pagamento</th>
-                                <th></th>
+                                <th scope="col">Status</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -40,14 +40,15 @@
 
                             ?>
                                 <tr>
-                                    <td>
+                                    <td width="40%">
                                         <img alt="..." src="<?php echo BASE_URL; ?>/assets/img/avata.png" class="avatar avatar-sm rounded-circle me-2">
                                         <a class="text-heading text-primary-hover font-semibold" href="#"><?php echo $value['name']; ?></a>
                                     </td>
-                                    <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['cost'] ?></span></td>
-                                    <td><span class="badge text-uppercase bg-soft-primary text-primary rounded-pill"><?php echo $value['additional_charge'] ?></span></td>
-                                    <td><?php echo $value['due_date']; ?></td>
-                                    <td class="text-end">
+                                    <td width="15%"><span class="">R$ <?php echo $value['cost'] ?></span></td>
+                                    <td width="15%"><span class="">R$ <?php echo $value['additional_charge'] ?></span></td>
+                                    <td width="10%"><?php echo $value['due_date']; ?></td>
+                                    <td width="10%"><?php echo $value['status_name']; ?></td>
+                                    <td width="10%" class="text-end">
                                         <a href="<?php echo BASE_URL; ?>/finance/edit/?id=<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i> </a>
                                         <a data-bs-toggle="modal" data-bs-target="#excluir-modal-<?php echo $value['id']; ?>" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
 
