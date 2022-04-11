@@ -95,7 +95,20 @@ class User
     static public function updatePassword($email, $password)
     {
         global $DB;
-        $query = $DB->query("UPDATE `inter_condominio`.`users` SET `password` = '{$password}' WHERE (`email` = '{$email}');");
+        $query = $DB->query("UPDATE `users` SET `password` = '{$password}' WHERE (`email` = '{$email}');");
+
+        if (empty($query)) {
+            return false;
+        }
+
+        return $query;
+    }
+
+
+    static public function updateNameAndEmail($name, $email, $id)
+    {
+        global $DB;
+        $query = $DB->query("UPDATE `users` SET `name` = '{$name}', `email` = '{$email}' WHERE (`id` = '{$id}');");
 
         if (empty($query)) {
             return false;

@@ -57,4 +57,20 @@ class Settings
         }
         redirect('settings');
     }
+
+    public function updateNameAndEmail()
+    {
+        $users_id = trim($_SESSION['user']['id']);
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
+
+        $result = User::updateNameAndEmail($name, $email, $users_id);
+
+        if (empty($result)) {
+            Alert::error("Falha ao tentar atualizar");
+        } else {
+            Alert::success("Atualizada com sucesso");
+        }
+        redirect('settings');
+    }
 }

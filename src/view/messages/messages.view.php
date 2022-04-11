@@ -3,12 +3,12 @@
         <div class="border-bottom pt-6">
             <div class="row align-items-center">
                 <div class="col-sm col-12">
-                    <h1 class="h2 ls-tight">Messages</h1>
+                    <h1 class="h2 ls-tight">Caixa de mensagem</h1>
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
                         <a href="#" class="btn btn-sm btn-primary">
-                            <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Enviar mensagen</span>
+                            <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Nova mensagem</span>
                         </a>
                     </div>
                 </div>

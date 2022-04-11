@@ -20,7 +20,7 @@
           <div class="bs-component">
 
 
-            <form action="<?php echo $data['action']; ?>" method="post">
+            <form action="<?php echo BASE_URL ;?>/settings/updateNameAndEmail" method="post">
 
               <fieldset>
                 <legend>Dados Pessoais</legend>
