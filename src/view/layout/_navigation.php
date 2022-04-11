@@ -46,7 +46,7 @@
         <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/finance""><i class="bi bi-cash"></i>Financeiro</a></li>
         <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/messages"><i class="bi bi-envelope"></i>Mensagem</a></li>
         <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/users"><i class="bi bi-people"></i> Usuários</a></li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/"><i class="bi bi-gear"></i> Configuração</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/settings"><i class="bi bi-gear"></i> Configuração</a></li>
       </ul>
       <!-- <hr class="navbar-divider my-4 opacity-70"> -->
 
