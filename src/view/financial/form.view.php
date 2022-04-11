@@ -6,7 +6,7 @@
                 <div class="col">
                     <div class="d-flex align-items-center gap-4">
                         <div>
-                            <a href="<?php echo BASE_URL; ?>/financial">
+                            <a href="<?php echo BASE_URL; ?>/finance">
                                 <button type="button" class="btn-close text-xs" aria-label="Close"></button>
                             </a>
                         </div>
@@ -29,7 +29,7 @@
             <div><label class="form-label">Descrição</label> <input type="text" name="description" class="form-control" value="<?php echo $data['financial']['description']; ?>"></div>
             <div><label class="form-label">Custo</label> <input type="number" name="cost" class="form-control" value="<?php echo $data['financial']['cost']; ?>"></input></div>
             <div><label class="form-label">Custo Adicionarl</label> <input type="text" name="additional_charge" class="form-control" value="<?php echo $data['financial']['additional_charge']; ?>"></input></div>
-            <div><label class="form-label">Data de Vencimento</label> <input type="date" name="due_Date" class="form-control" value="<?php echo $data['financial']['due_Date']; ?>"></input></div>
+            <div><label class="form-label">Data de Pagamento</label> <input type="date" name="due_Date" class="form-control" value="<?php echo ($data['financial']['due_date']); ?>"></input></div>
 
         </div>
 

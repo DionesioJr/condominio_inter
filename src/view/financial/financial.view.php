@@ -4,6 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-sm col-12">
                     <h1 class="h2 ls-tight">Financeiro</h1>
+                    <br>
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
@@ -28,7 +29,7 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Custo</th>
                                 <th scope="col">Custo extra</th>
-                                <th scope="col">Vencimento</th>
+                                <th scope="col">Pagamento</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -88,7 +89,6 @@
                 </div>
                 </table>
             </div>
-            <div class="card-footer border-0 py-5"><span class="text-muted text-sm">Showing 10 items out of 250 results found</span></div>
         </div>
     </div>
     </div>

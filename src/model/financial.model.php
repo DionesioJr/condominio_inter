@@ -31,13 +31,12 @@ class Financial
         $query = $DB->query("SELECT * from `financial` where id = $id");
 
 
-        if (empty($query)) {
+        $row = $query->fetchAll();
+
+        if (empty($row)) {
             return false;
         }
 
-        foreach ($query as $key => $value) {
-            $row[] = $value;
-        }
         return current($row);
     }
 
@@ -45,8 +44,8 @@ class Financial
     {
         global $DB;
         $query = $DB->query("INSERT INTO `financial` (`name`, `description`, `due_date`, `cost`, `additional_charge`) 
-        VALUES ('{$data['name']}', '{$data['description']}', '{$data['due_date']}', '{$data['cost']}', '{$data['additional_charge']}'');");
-       
+        VALUES ('{$data['name']}', '{$data['description']}', '{$data['due_date']}', '{$data['cost']}', '{$data['additional_charge']}');");
+
         if (empty($query)) {
             return false;
         }
@@ -62,7 +61,7 @@ class Financial
         if (empty($query)) {
             return false;
         }
-        return $DB->lastInsertId();
+        return $query;
     }
 
     static public function destroy($id)

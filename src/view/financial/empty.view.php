@@ -4,12 +4,12 @@
             <div class="row align-items-center">
                 <div class="col-sm col-12">
                     <h3 class="h2 ls-tight">Ainda não temos nenhuma informação cadastrada.</h3>
-                    <p class="lead">Vamos lá, hora de adicionar uma conta.</p>
+                    <p class="lead">Vamos lá, hora de adicionar.</p>
                 </div>
                 <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                     <div class="hstack gap-2 justify-content-sm-end">
-                        <a href="<?php echo BASE_URL; ?>/users/create" class="btn btn-sm btn-primary">
-                            <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Adicionar conta</span>
+                        <a href="<?php echo BASE_URL; ?>/finance/create" class="btn btn-sm btn-primary">
+                            <span class="pe-2"><i class="bi bi-plus-square-dotted"></i> </span><span>Adicionar financeiro</span>
                         </a>
                     </div>
                 </div>
