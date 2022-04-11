@@ -91,4 +91,16 @@ class User
         }
         return current($row);
     }
+
+    static public function updatePassword($email, $password)
+    {
+        global $DB;
+        $query = $DB->query("UPDATE `inter_condominio`.`users` SET `password` = '{$password}' WHERE (`email` = '{$email}');");
+
+        if (empty($query)) {
+            return false;
+        }
+
+        return $query;
+    }
 }

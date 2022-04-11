@@ -26,15 +26,35 @@ class Settings
             return false;
         }
 
-
         $result = User::destroy($users_id);
-
         if (empty($result)) {
             Alert::error("Falha ao tentar apagar a conta!");
-        } else {
-            Alert::success("Usuario apagado com sucesso!");
+            redirect('settings');
         }
 
-        redirect('users');
+        Alert::success("Usuario apagado com sucesso!");
+        redirect('logins/logout');
+    }
+
+
+    public function updatepassword()
+    {
+        $email = trim($_SESSION['user']['email']);
+        $password1 = trim($_POST['password1']);
+        $password2 = trim($_POST['password2']);
+
+        if ($password1 != $password2) {
+            redirect('settings');
+        }
+
+        $password = md5($password1);
+
+        $result = User::updatePassword($email, $password);
+        if (empty($result)) {
+            Alert::error("Falha ao tentar atualizar a senha");
+        } else {
+            Alert::success("Senha atualizada com sucesso");
+        }
+        redirect('settings');
     }
 }

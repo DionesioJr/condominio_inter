@@ -43,7 +43,7 @@ class Logins
         $data_user['email'] = trim($_POST['email']) ?? '';
         $data_user['password'] = md5(trim($_POST['password'])) ?? '';
         $data_user['status'] = 1;
-        $data_user['is_admin'] = trim($_POST['is_admin']) ?? '';
+        $data_user['is_admin'] = (int) $_POST['is_admin'] ?? 1;
         $users_id = User::store($data_user);
 
 

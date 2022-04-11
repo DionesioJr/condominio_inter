@@ -15,8 +15,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end">
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="<?php echo BASE_URL; ?>/"><i class="bi bi-house me-3"></i>Inicio </a><a class="dropdown-item" href="<?php echo BASE_URL; ?>/">
-                <i class="bi bi-pencil me-3"></i>Editar perfil</a>
+              <a class="dropdown-item" href="<?php echo BASE_URL; ?>/"><i class="bi bi-house me-3"></i>Inicio </a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo BASE_URL; ?>/settings"><i class="bi bi-gear me-3"></i>Configuração </a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo BASE_URL; ?>/logins/logout"><i class="bi bi-reply me-3"></i>Sair</a>
             </div>

@@ -62,18 +62,18 @@
             </div>
             <div class="vstack gap-4">
                 <div><label class="form-label">Tipo de perfil</label>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="is_admin" <?php if ($data['users']['is_admin'] == 1) {
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="0" name="is_admin" <?php if ($data['users']['is_admin'] == 0) {
                                                                                                                                                 echo 'checked';
-                                                                                                                                            } else if (empty($data['users']['is_admin']) && $data['users']['admin_default'] == 1) {
+                                                                                                                                            } else if (empty($data['users']['is_admin']) && $data['users']['admin_default'] == 0) {
                                                                                                                                                 echo 'checked';
                                                                                                                                             } ?>>
                         <div class="pt-1 form-checked-content">
                             <h6 class="mb-1 lh-relaxed">Condômino</h6>
                         </div>
                     </div>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="is_admin" <?php if ($data['users']['is_admin'] == 2) {
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="1" name="is_admin" <?php if ($data['users']['is_admin'] == 1) {
                                                                                                                                                 echo 'checked';
-                                                                                                                                            } else if (empty($data['users']['is_admin']) && $data['users']['admin_default'] == 2) {
+                                                                                                                                            } else if (empty($data['users']['is_admin']) && $data['users']['admin_default'] == 1) {
                                                                                                                                                 echo 'checked';
                                                                                                                                             } ?>>
                         <div class="pt-1 form-checked-content">

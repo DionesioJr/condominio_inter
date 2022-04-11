@@ -2,6 +2,14 @@
 class Users
 {
 
+    public function __construct()
+    {
+        $data = $_SESSION;
+        if (empty($data['user']['is_admin'])) {
+            exit;
+        }
+    }
+
     public function index()
     {
         $data = $_SESSION;
@@ -42,7 +50,7 @@ class Users
         $data['users']['email'] = '';
         $data['users']['password'] = '';
         $data['users']['status'] = '';
-        $data['users']['is_admin'] = '';
+        $data['users']['is_admin'] = 0;
         $data['users']['status_default'] = 1;
         $data['users']['admin_default'] = 1;
 
@@ -91,7 +99,7 @@ class Users
         $data['email'] = trim($_POST['email']) ?? '';
         $data['password'] = md5(trim($_POST['password'])) ?? '';
         $data['status'] = trim($_POST['status']) ?? 1;
-        $data['is_admin'] = trim($_POST['is_admin']) ?? 1;
+        $data['is_admin'] = (int) $_POST['is_admin'];
 
         $result = User::store($data);
 
@@ -136,7 +144,7 @@ class Users
         $data['email'] = trim($_POST['email'] ?? $users['email']);
         $data['password'] = trim($_POST['password'] ?? $users['password']);
         $data['status'] = trim($_POST['status'] ?? $users['status']);
-        $data['is_admin'] = trim($_POST['is_admin'] ?? $users['is_admin']);
+        $data['is_admin'] = (int) $_POST['is_admin'];
 
 
         if (empty(trim($_POST['password']))) {

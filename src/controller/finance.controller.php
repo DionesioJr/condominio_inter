@@ -1,6 +1,13 @@
 <?php
 class Finance
 {
+    public function __construct()
+    {
+        $data = $_SESSION;
+        if (empty($data['user']['is_admin'])) {
+            exit;
+        }
+    }
 
 
     public function index()
