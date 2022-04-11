@@ -10,6 +10,6 @@ class Settings
     public function conta()
     {
         $data = $_SESSION;
-        _Application::applicationView('configuracao/conta', $data);
+        _Application::applicationView('settings/conta', $data);
     }
 }
