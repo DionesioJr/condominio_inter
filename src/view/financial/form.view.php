@@ -25,7 +25,7 @@
     <main class="py-6 bg-surface-secondary">
         <div class="container-fluid max-w-screen-md vstack gap-5">
             <div class="row">
-                <div class="col-12 mb-5"><label class="form-label">Nome completo</label> <input type="text" name="name" class="form-control" value="<?php echo $data['financial']['name']; ?>"></div>
+                <div class="col-12 mb-5"><label class="form-label">Nome</label> <input type="text" name="name" class="form-control" value="<?php echo $data['financial']['name']; ?>"></div>
                 <div class="col-12 mb-5"><label class="form-label">Descrição</label> <input type="text" name="description" class="form-control" value="<?php echo $data['financial']['description']; ?>"></div>
                 <div class="col-6 mb-5"><label class="form-label">Custo</label> <input type="number" name="cost" class="form-control" value="<?php echo $data['financial']['cost']; ?>"></input></div>
                 <div class="col-6 mb-5"><label class="form-label">Custo Adicionarl</label> <input type="text" name="additional_charge" class="form-control" value="<?php echo $data['financial']['additional_charge']; ?>"></input></div>
