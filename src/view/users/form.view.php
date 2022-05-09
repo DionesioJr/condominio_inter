@@ -48,9 +48,9 @@
                             <h6 class="mb-1 lh-relaxed">Ativo</h6>
                         </div>
                     </div>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="status" <?php if ($data['users']['status'] == 2) {
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="0" name="status" <?php if ($data['users']['status'] == 0) {
                                                                                                                                                 echo 'checked';
-                                                                                                                                            } else if (empty($data['users']['status']) && $data['users']['status_default'] == 2) {
+                                                                                                                                            } else if (empty($data['users']['status']) && $data['users']['status_default'] == 0) {
                                                                                                                                                 echo 'checked';
                                                                                                                                             } ?>>
                         <div class="pt-1 form-checked-content">

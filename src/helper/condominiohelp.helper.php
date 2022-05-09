@@ -9,7 +9,7 @@ class CondominioHelp
             return "Ativo";
         }
 
-        if ($status_id == 2) {
+        if ($status_id == 0) {
             return "Inativo";
         }
     }

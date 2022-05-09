@@ -110,7 +110,7 @@ class Logins
 
         if ($email == 'admin@gmail.com') {
             $_SESSION['login'] = true;
-            redirect('condominiums');
+            redirect('messages');
         }
 
         if (!empty($result_login)) {

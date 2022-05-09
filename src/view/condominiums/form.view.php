@@ -48,11 +48,11 @@
                             <h6 class="mb-1 lh-relaxed">Ativo</h6>
                         </div>
                     </div>
-                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="2" name="status" <?php
+                    <div class="d-flex gap-3"><input class="form-check-input flex-shrink-0 text-lg" type="radio" value="0" name="status" <?php
 
-                                                                                                                                            if ($data['condominiums']['status'] == 2) {
+                                                                                                                                            if ($data['condominiums']['status'] == 0) {
                                                                                                                                                 echo 'checked';
-                                                                                                                                            } else if (empty($data['condominiums']['status']) && $data['condominiums']['status_default'] == 2) {
+                                                                                                                                            } else if (empty($data['condominiums']['status']) && $data['condominiums']['status_default'] == 0) {
                                                                                                                                                 echo 'checked';
                                                                                                                                             }
                                                                                                                                             ?>>

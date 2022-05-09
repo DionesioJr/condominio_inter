@@ -9,7 +9,7 @@ class UsersHelp
             return "Ativado";
         }
 
-        if ($status_id == 2) {
+        if ($status_id == 0) {
             return "Desativado";
         }
     }

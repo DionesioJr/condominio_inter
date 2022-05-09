@@ -10,34 +10,29 @@ class User
     static public function index()
     {
         global $DB;
-        $row = array();
-        $query = $DB->query("SELECT * from users");
-
-        if (empty($query)) {
+        $query = $DB->query("SELECT * from users;");
+        
+        $result = $query->fetchAll();
+    
+        if (empty($result)) {
             return false;
         }
 
-        foreach ($query as $key => $value) {
-            $row[] = $value;
-        }
-        return $row;
+        return $result;
     }
 
     static public function show($id)
     {
         global $DB;
-        $row = array();
         $query = $DB->query("SELECT * from users where id = $id");
 
+        $result = $query->fetchAll();
 
-        if (empty($query)) {
+        if (empty($result)) {
             return false;
         }
 
-        foreach ($query as $key => $value) {
-            $row[] = $value;
-        }
-        return current($row);
+        return current($result);
     }
 
     static public function store($data)
@@ -79,17 +74,14 @@ class User
     static public function login($email, $password)
     {
         global $DB;
-        $row = array();
-        $query = $DB->query("SELECT * from users where email = '{$email}' AND password = '{$password}'");
+        $query = $DB->query("SELECT * from users where email = '{$email}' AND password = '{$password}' AND status = 1");
 
-        if (empty($query)) {
+        $result = $query->fetchAll();
+
+        if (empty($result)) {
             return false;
         }
-
-        foreach ($query as $key => $value) {
-            $row[] = $value;
-        }
-        return current($row);
+        return current($result);
     }
 
     static public function updatePassword($email, $password)
@@ -97,11 +89,13 @@ class User
         global $DB;
         $query = $DB->query("UPDATE `users` SET `password` = '{$password}' WHERE (`email` = '{$email}');");
 
-        if (empty($query)) {
+        $result = $query->fetchAll();
+
+        if (empty($result)) {
             return false;
         }
 
-        return $query;
+        return $result;
     }
 
 
@@ -110,10 +104,12 @@ class User
         global $DB;
         $query = $DB->query("UPDATE `users` SET `name` = '{$name}', `email` = '{$email}' WHERE (`id` = '{$id}');");
 
-        if (empty($query)) {
+        $result = $query->fetchAll();
+
+        if (empty($result)) {
             return false;
         }
 
-        return $query;
+        return $result;
     }
 }
