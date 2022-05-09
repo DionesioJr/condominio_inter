@@ -2,26 +2,34 @@
 -- seg 11 abr 2022 19:23:39
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
+SET
+  @OLD_UNIQUE_CHECKS = @ @UNIQUE_CHECKS,
+  UNIQUE_CHECKS = 0;
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET
+  @OLD_FOREIGN_KEY_CHECKS = @ @FOREIGN_KEY_CHECKS,
+  FOREIGN_KEY_CHECKS = 0;
+
+SET
+  @OLD_SQL_MODE = @ @SQL_MODE,
+  SQL_MODE = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
 -- Schema inter_condominio
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `inter_condominio` ;
+DROP SCHEMA IF EXISTS `inter_condominio`;
 
 -- -----------------------------------------------------
 -- Schema inter_condominio
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `inter_condominio` ;
-USE `inter_condominio` ;
+CREATE SCHEMA IF NOT EXISTS `inter_condominio`;
+
+USE `inter_condominio`;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`address`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`address` ;
+DROP TABLE IF EXISTS `inter_condominio`.`address`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`address` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -32,14 +40,13 @@ CREATE TABLE IF NOT EXISTS `inter_condominio`.`address` (
   `state` VARCHAR(45) NULL,
   `parents` VARCHAR(45) NULL,
   `code` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`condominiums`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`condominiums` ;
+DROP TABLE IF EXISTS `inter_condominio`.`condominiums`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`condominiums` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -50,14 +57,13 @@ CREATE TABLE IF NOT EXISTS `inter_condominio`.`condominiums` (
   `address_id` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC) VISIBLE,
-  INDEX `fk_condominiums_address1_idx` (`address_id` ASC) VISIBLE)
-ENGINE = InnoDB;
-
+  INDEX `fk_condominiums_address1_idx` (`address_id` ASC) VISIBLE
+) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`users` ;
+DROP TABLE IF EXISTS `inter_condominio`.`users`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -66,41 +72,38 @@ CREATE TABLE IF NOT EXISTS `inter_condominio`.`users` (
   `password` VARCHAR(255) NOT NULL,
   `status` TINYINT(1) NOT NULL DEFAULT 1,
   `is_admin` TINYINT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`residents`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`residents` ;
+DROP TABLE IF EXISTS `inter_condominio`.`residents`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`residents` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_residents_users1_idx` (`users_id` ASC) VISIBLE)
-ENGINE = InnoDB;
-
+  INDEX `fk_residents_users1_idx` (`users_id` ASC) VISIBLE
+) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`condominiums_has_residents`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`condominiums_has_residents` ;
+DROP TABLE IF EXISTS `inter_condominio`.`condominiums_has_residents`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`condominiums_has_residents` (
   `condominiums_id` INT NOT NULL,
   `residents_id` INT NOT NULL,
   PRIMARY KEY (`condominiums_id`, `residents_id`),
   INDEX `fk_condominiums_has_residents_residents1_idx` (`residents_id` ASC) VISIBLE,
-  INDEX `fk_condominiums_has_residents_condominiums1_idx` (`condominiums_id` ASC) VISIBLE)
-ENGINE = InnoDB;
-
+  INDEX `fk_condominiums_has_residents_condominiums1_idx` (`condominiums_id` ASC) VISIBLE
+) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`trustees`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`trustees` ;
+DROP TABLE IF EXISTS `inter_condominio`.`trustees`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`trustees` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -108,27 +111,39 @@ CREATE TABLE IF NOT EXISTS `inter_condominio`.`trustees` (
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trustees_condominiums1_idx` (`condominiums_id` ASC) VISIBLE,
-  INDEX `fk_trustees_users1_idx` (`users_id` ASC) VISIBLE)
-ENGINE = InnoDB;
-
+  INDEX `fk_trustees_users1_idx` (`users_id` ASC) VISIBLE
+) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `inter_condominio`.`financial`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inter_condominio`.`financial` ;
+DROP TABLE IF EXISTS `inter_condominio`.`financial`;
 
 CREATE TABLE IF NOT EXISTS `inter_condominio`.`financial` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   `description` TEXT NULL,
   `due_date` DATE NULL,
-  `cost` DECIMAL(20,2) NULL,
-  `additional_charge` DECIMAL(20,2) NULL,
+  `cost` DECIMAL(20, 2) NULL,
+  `additional_charge` DECIMAL(20, 2) NULL,
   `status` TINYINT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `inter_condominio`.`messages` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message` VARCHAR(45) NOT NULL,
+  `to` INT(11) NOT NULL,
+  `from` INT(11) NOT NULL,
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+SET
+  SQL_MODE = @OLD_SQL_MODE;
+
+SET
+  FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
+
+SET
+  UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;
