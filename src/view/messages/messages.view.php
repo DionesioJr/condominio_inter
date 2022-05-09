@@ -8,13 +8,13 @@
         <div id="profile">
             <div class="wrap">
                 <img id="profile-img" src="<?php echo BASE_URL; ?>/assets/img/avata.png" class="online" alt="" />
-                <p>Paulo Guilherme</p>
+                <p><?php echo $_SESSION['user']['name']; ?></p>
 
             </div>
         </div>
         <div id="contacts">
             <ul>
-                <li class="contact" v-for="user in users" v-bind:key="user.id" :class="user.id == userActive.id ?? active" @click="setUserActive(user.id)">
+                <li class="contact" v-for="user in users" v-bind:key="user.id" :class="user.id == userActive.id ?? active" @click="setUserActive(user)">
                     <div class="wrap">
                         <!-- <span class="contact-status online"></span> -->
                         <img src="<?php echo BASE_URL; ?>/assets/img/avata.png" alt="" />
@@ -30,14 +30,14 @@
     <div class="content">
         <div class="contact-profile">
             <img src="<?php echo BASE_URL; ?>/assets/img/avata.png" alt="" />
-            <p>Dionésio Guerra</p>
+            <p>{{userActive.name}}</p>
 
         </div>
         <div class="messages" style="background-image: url(<?php echo BASE_URL; ?>/assets/img/whatsapp.png)">
             <div>
                 <ul>
                     <div v-for="message in messages">
-                        <li class="replies" v-if="message.to == userActive">
+                        <li class="replies" v-if="message.to == userActive.id">
                             <img src="<?php echo BASE_URL; ?>/assets/img/avata.png" alt="" />
                             <p>{{message.message}}</p>
                         </li>
@@ -69,7 +69,7 @@
             return {
                 messages: JSON.parse(localStorage.getItem('messages')) ?? [],
                 users: JSON.parse(localStorage.getItem('users')) ?? [],
-                userActive: localStorage.getItem('user_active') ?? [],
+                userActive: JSON.parse(localStorage.getItem('user_active')) ?? [],
             }
         },
         mounted() {
@@ -81,8 +81,6 @@
                 setInterval(() => {
                     this.getMessages(this.userActive);
                 }, 2000);
-
-
             }
         },
         computed: {
@@ -102,7 +100,7 @@
             },
 
             async getMessages(to) {
-                this.messages = await axios.get(base_url + '/messages/getMessagesAjax/?to=' + to)
+                this.messages = await axios.get(base_url + '/messages/getMessagesAjax/?to=' + to.id)
                     .then(function(response) {
                         localStorage.setItem('messages', JSON.stringify(response.data));
                         return response.data;
@@ -125,12 +123,10 @@
                     });
             },
 
-            setUserActive(user_id) {
-                localStorage.setItem("user_active", user_id);
-
-                this.getMessages(user_id);
-                console.log(user_id);
-                this.userActive = this.users[user_id];
+            setUserActive(user) {
+                this.userActive = this.users[user.id];
+                localStorage.setItem("user_active", JSON.stringify(user));
+                this.getMessages(user.id);
             },
             controlLayout() {
                 $(".messages").animate({

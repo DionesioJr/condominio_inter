@@ -3,7 +3,6 @@ class Messages
 {
     public function __construct()
     {
-       
     }
 
     static public function index()
@@ -32,13 +31,13 @@ class Messages
     {
         $to = $_GET['to'];
         $from = $_SESSION['user']['id'];
-        
-        if(empty($from)){
+
+        if (empty($from)) {
             return false;
         }
-        
+
         $mensages = Message::get($to, $from);
-                
+
         // $mensages = array();
         // $i = 1;
 
@@ -71,6 +70,13 @@ class Messages
                 if ($user['is_admin'] == 1) {
                     return  $user;
                 }
+            }
+        });
+
+        // removendo o proprio usuario da lista
+        $users = array_filter($users, function ($user) {
+            if ($user['id'] != $_SESSION['user']['id']) {
+                return $user;
             }
         });
 
