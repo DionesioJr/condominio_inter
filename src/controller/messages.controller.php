@@ -1,8 +1,11 @@
 <?php
 class Messages
 {
+    private $condominiums_id;
+
     public function __construct()
     {
+        $this->condominiums_id = $_SESSION['user']['condominiums_id'];
     }
 
     static public function index()
@@ -42,15 +45,15 @@ class Messages
 
         $mensages = Message::get($to, $from, $last);
 
-        if ($await === 'true' && empty($mensages)) {
-            for ($i = 1; $i <= 10; $i++) {
-                usleep(500000); // meio segundo 0.5 segundos
-                $mensages = Message::get($to, $from);
-                if (!empty($mensages)) {
-                    break;
-                }
-            }
-        }
+        // if ($await === 'true' && empty($mensages)) {
+        //     for ($i = 1; $i <= 10; $i++) {
+        //         usleep(500000); // meio segundo 0.5 segundos
+        //         $mensages = Message::get($to, $from, $last);
+        //         if (!empty($mensages)) {
+        //             break;
+        //         }
+        //     }
+        // }
 
         self::response($mensages);
     }
@@ -58,7 +61,7 @@ class Messages
 
     public function getUsersAjax()
     {
-        $users = User::index();
+        $users = User::index($this->condominiums_id);
 
         // filtrando usuarios ativos
         $users = array_filter($users, function ($user) {
@@ -91,7 +94,7 @@ class Messages
 
     public function getUserAjax($id)
     {
-        $users = User::show($id);
+        $users = User::show($id, $this->condominiums_id);
         $users = array_map(function ($data) {
 
             if ($_SESSION['user']['is_admin']) {

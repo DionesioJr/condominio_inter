@@ -41,9 +41,9 @@
   <div class="px-5 py-5 p-lg-0 min-h-screen bg-surface-secondary d-flex flex-column justify-content-center">
     <div class="d-flex justify-content-center">
       <div class="col-lg-5 col-xl-4 p-12 p-xl-20 position-fixed start-0 top-0 h-screen overflow-y-hidden bg-primary d-none d-lg-flex flex-column">
-        <a class="d-block" href="#"><img src="<?php echo BASE_URL; ?>/assets/img/logo-blue.png" class="" style="width: 14rem;" alt="Inter condomínios" /></a>
+        <a class="d-block" href="#"><img src="<?php echo BASE_URL; ?>/assets/img/logo-blue.png" class="" style="width: 10rem;" alt="Inter condomínios" /></a>
         <div class="mt-32 mb-20">
-          <h1 class="ls-tight font-bolder display-6 text-white mb-5">
+          <h1 class="ls-tight font-bolder text-white mb-5">
             Vamos construir algo incrível hoje.
           </h1>
           <p class="text-white text-opacity-80">

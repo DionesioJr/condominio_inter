@@ -5,7 +5,7 @@ class Message
     static public function get($to, $from, $last)
     {
         global $DB;
-        $query = $DB->query("SELECT * FROM messages where (`to` = {$to} and `from` = {$from}) || (`to` = {$from} and `from` = {$to}) and id > {$last};");
+        $query = $DB->query("SELECT * FROM messages where ((`to` = {$to} and `from` = {$from}) || (`to` = {$from} and `from` = {$to})) and id > {$last};");
 
         $result = $query->fetchAll();
 

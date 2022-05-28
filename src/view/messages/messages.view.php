@@ -34,7 +34,7 @@
             <p>{{user.name}}</p>
 
         </div>
-        <div class="messages" v-if="messages" style="background-image: url(<?php echo BASE_URL; ?>/assets/img/whatsapp.png)">
+        <div class="messages" id="messages" v-if="messages" style="background-image: url(<?php echo BASE_URL; ?>/assets/img/whatsapp.png)">
             <div>
                 <ul>
                     <div v-for="msg in messages">
@@ -134,6 +134,7 @@
     const app = Vue.createApp({
         data() {
             return {
+                lastMessages: 0,
                 messages: [],
                 message: '',
                 user: {},
@@ -147,7 +148,7 @@
                 if (this.user.id) {
                     this.getMessage();
                 }
-            }, 3000);
+            }, 500);
         },
         computed: {
 
@@ -156,6 +157,7 @@
             setUserActive(user) {
                 this.user = user;
                 this.messages = []
+                this.lastMessages = 0;
                 this.getMessage();
 
             },
@@ -163,7 +165,6 @@
                 new Promise((resolve, reject) => {
                     axios.get(base_url + '/messages/getUsersAjax').then((response) => {
                         this.users = response.data;
-                        this.scrollHandler();
                         resolve(response.data);
                     }).catch((error) => {
                         reject(error);
@@ -179,8 +180,10 @@
                 new Promise((resolve, reject) => {
                     axios.get(base_url + '/messages/sendMessageAjax/?to=' + this.user.id + "&message=" + this.message).then((response) => {
                         this.message = '';
-                        console.log(response.data);
+                        this.getMessage();
                         resolve(response.data);
+                    }).then((response) => {
+                        this.scrollHandler();
                     }).catch((error) => {
                         reject(error);
                     });
@@ -189,29 +192,28 @@
             getMessage() {
                 new Promise((resolve, reject) => {
 
-                    let item_id = 0;
-                    let last = 0;
-                    let length = Object.keys(this.messages).length;
-
-                    if (length) {
-                        last = this.messages[length].id;
-                    } else {
-                        last = 0;
-                    }
+                    axios.get(base_url + '/messages/getMessageAjax/?to=' + this.user.id + "&await=" + true + "&last=" + this.lastMessages).then((response) => {
 
 
-                    axios.get(base_url + '/messages/getMessageAjax/?to=' + this.user.id + "&await=" + true + "&last=" + last).then((response) => {
+                        if (response.data.length > 0) {
 
-                        if (length > 0) {
+                            if (response.data[response.data.length - 1].id > this.lastMessages) {
+                                response.data.map((message) => {
+                                    console.log(message);
+                                    this.messages.push(message);
+                                    this.lastMessages = message.id;
+                                    this.scrollHandler();
 
-                            // for (let index = 0; index < length; index++) {
-                            //     this.messages.push(response.data[index]);
-                            // }
-                        } else {
-                            this.messages.push(response.data[0]);
+                                });
+                            }
+
+
                         }
 
                         resolve(response.data);
+                    }).then((response) => {
+
+
                     }).catch((error) => {
                         reject(error);
                     });
@@ -219,9 +221,29 @@
 
             },
             scrollHandler() {
-                $(".messages").animate({
-                    scrollTop: $(document).height()
-                }, "fast");
+
+
+                let objDiv = document.getElementById("messages");
+                objDiv.scrollTop = objDiv.scrollHeight;
+
+                // var myElement = document.getElementById('messages');
+                // var topPos = myElement.offsetTop;
+
+
+
+                // $(".messages").animate({
+                //     scrollTop: $(document).height()
+                // }, "fast");
+
+
+                // var heightPage = $(".messages").scrollHeight;
+                // var heightPage
+
+
+                // var heightPage = document.body.scrollHeight;
+                // window.scrollTo(0, heightPage);
+
+
             }
         },
     });
