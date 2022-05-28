@@ -42,13 +42,13 @@
       <ul class="navbar-nav">
 
         <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/messages"><i class="bi bi-envelope"></i>Mensagem</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/finance""><i class=" bi bi-cash"></i>Financeiro</a></li>
         <?php
 
         if (!empty($_SESSION['user']['is_admin'])) { ?>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo BASE_URL; ?>/condominiums"> <i class="bi bi-briefcase"></i> Condomínios</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/finance""><i class=" bi bi-cash"></i>Financeiro</a></li>
           <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/users"><i class="bi bi-people"></i> Usuários</a></li>
         <?php } ?>
         <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>/settings"><i class="bi bi-gear"></i> Configuração</a></li>

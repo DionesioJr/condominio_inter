@@ -18,34 +18,39 @@ class Messages
     }
 
 
-    public function sendMessagesAjax()
+    public function sendMessageAjax()
     {
+
         $data['to'] = $_GET['to'];
-        $data['from'] = $_GET['from'];
+        $data['from'] = $_SESSION['user']['id'];
         $data['message'] = $_GET['message'];
+
 
         $mensages = Message::send($data);
     }
 
-    public function getMessagesAjax()
+    public function getMessageAjax()
     {
         $to = $_GET['to'];
+        $last = $_GET['last'];
         $from = $_SESSION['user']['id'];
+        $await = $_GET['await'] ?? false;
 
         if (empty($from)) {
             return false;
         }
 
-        $mensages = Message::get($to, $from);
+        $mensages = Message::get($to, $from, $last);
 
-        // $mensages = array();
-        // $i = 1;
-
-        // do {
-        //     if (empty($mensages)) {
-        //         sleep(0.2);
-        //     }
-        // } while ($i <= 10 && empty($mensages));
+        if ($await === 'true' && empty($mensages)) {
+            for ($i = 1; $i <= 10; $i++) {
+                usleep(500000); // meio segundo 0.5 segundos
+                $mensages = Message::get($to, $from);
+                if (!empty($mensages)) {
+                    break;
+                }
+            }
+        }
 
         self::response($mensages);
     }
