@@ -62,7 +62,7 @@
               <form action="<?php echo  BASE_URL; ?>/logins/authentication" method="POST">
                 <div class="mb-5">
                   <label class="form-label" for="email">Email </label>
-                  <input type="email" class="form-control" name="email" id="email" value="admin@gmail.com" placeholder="" />
+                  <input type="email" class="form-control" name="email" id="email" value="" placeholder="" />
                 </div>
                 <div class="mb-5">
                   <div class="d-flex align-items-center justify-content-between">
@@ -70,7 +70,7 @@
                       <label class="form-label" for="password">Senha</label>
                     </div>
                     <div class="mb-2">
-                      <a href="./side-recover.html" class="text-sm text-muted text-primary-hover text-underline">Esqueceu a senha?</a>
+                      <a href="<?php echo  BASE_URL; ?>/logins/recover" class="text-sm text-muted text-primary-hover text-underline">Esqueceu a senha?</a>
                     </div>
                   </div>
                   <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" />
