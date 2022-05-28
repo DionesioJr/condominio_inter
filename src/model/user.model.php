@@ -7,13 +7,13 @@ class User
     }
 
 
-    static public function index()
+    static public function index($condominiums_id)
     {
         global $DB;
-        $query = $DB->query("SELECT * from users;");
-        
+        $query = $DB->query("SELECT * from users where condominiums_id = '{$condominiums_id}'");
+
         $result = $query->fetchAll();
-    
+
         if (empty($result)) {
             return false;
         }
@@ -21,10 +21,10 @@ class User
         return $result;
     }
 
-    static public function show($id)
+    static public function show($id, $condominiums_id)
     {
         global $DB;
-        $query = $DB->query("SELECT * from users where id = $id");
+        $query = $DB->query("SELECT * from users where id = $id and condominiums_id = '{$condominiums_id}' ");
 
         $result = $query->fetchAll();
 
@@ -38,8 +38,8 @@ class User
     static public function store($data)
     {
         global $DB;
-        $query = $DB->query("INSERT INTO `users` (`name`, `email`, `password`, `status`, `is_admin`) 
-        VALUES ('{$data['name']}', '{$data['email']}', '{$data['password']}', '{$data['status']}', '{$data['is_admin']}');");
+        $query = $DB->query("INSERT INTO `users` (`name`, `email`, `password`, `status`, `is_admin`, `condominiums_id`) 
+        VALUES ('{$data['name']}', '{$data['email']}', '{$data['password']}', '{$data['status']}', '{$data['is_admin']}', '{$data['condominiums_id']}');");
 
         if (empty($query)) {
             return false;
@@ -50,8 +50,8 @@ class User
     static public function update($data)
     {
         global $DB;
-        $query = $DB->query("UPDATE `users` SET `name` = '{$data['name']}', `email` = '{$data['email']}', `password` = '{$data['password']}', `status` = '{$data['status']}', `is_admin` = '{$data['is_admin']}' 
-        WHERE (`id` = '{$data['id']}');");
+        $query = $DB->query("UPDATE `users` SET `name` = '{$data['name']}', `email` = '{$data['email']}', `password` = '{$data['password']}', `status` = '{$data['status']}', `is_admin` = '{$data['is_admin']}', `condominiums_id` = '{$data['condominiums_id']}' 
+        WHERE `id` = '{$data['id']}' and `condominiums_id` = '{$data['condominiums_id']}';");
 
         if (empty($query)) {
             return false;
@@ -75,7 +75,6 @@ class User
     {
         global $DB;
         $query = $DB->query("SELECT * from users where email = '{$email}' AND password = '{$password}' AND status = 1");
-
         $result = $query->fetchAll();
 
         if (empty($result)) {
@@ -89,13 +88,11 @@ class User
         global $DB;
         $query = $DB->query("UPDATE `users` SET `password` = '{$password}' WHERE (`email` = '{$email}');");
 
-        $result = $query->fetchAll();
-
-        if (empty($result)) {
+        if (empty($query)) {
             return false;
         }
 
-        return $result;
+        return $query;
     }
 
 
@@ -104,12 +101,10 @@ class User
         global $DB;
         $query = $DB->query("UPDATE `users` SET `name` = '{$name}', `email` = '{$email}' WHERE (`id` = '{$id}');");
 
-        $result = $query->fetchAll();
-
-        if (empty($result)) {
+        if (empty($query)) {
             return false;
         }
 
-        return $result;
+        return $query;
     }
 }

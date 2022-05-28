@@ -1,9 +1,11 @@
 <?php
 class Condominiums
 {
+    private $condominiums_id;
     public function __construct()
     {
         $data = $_SESSION;
+        $this->condominiums_id = $_SESSION['user']['condominiums_id'];
         if (empty($data['user']['is_admin'])) {
             exit;
         }
@@ -11,21 +13,23 @@ class Condominiums
 
     public function index()
     {
-        $data['condominiums'] = Condominium::index();
-
-        foreach ($data['condominiums'] as $key => $value) {
-            $data['condominiums'][$key]['address'] = Address::show($value['address_id']);
-        }
 
         $data['header']['title'] = 'Condomínios';
+        $data['condominiums'] = Condominium::index($this->condominiums_id);
+
         $row = array();
-
         foreach ($data['condominiums'] as $key => $value) {
-
-            $value['status_name'] = condominiohelp::getStatusName($value['status']);
+            $value['address'] = Address::show($value['address_id'], $this->condominiums_id) ?? [];
             $row[] = $value;
         }
+        $data['condominiums'] = $row;
 
+
+        $row = array();
+        foreach ($data['condominiums'] as $key => $value) {
+            $value['status_name'] = condominiohelp::getStatusName($value['status']) ?? '';
+            $row[] = $value;
+        }
         $data['condominiums'] = $row;
 
         if (empty($data['condominiums'])) {
@@ -146,19 +150,19 @@ class Condominiums
     {
 
         $id = trim($_POST['id']);
-        $condominio = Condominium::show($id);
-        $data['address'] = Address::show($id);
+        $condominio = Condominium::show($id, $this->condominiums_id);
+        $address = Address::show($condominio['address_id'], $this->condominiums_id);
 
         // dados do endereço
-        $data_address['street'] = trim($_POST['street']) ?? $data['address']['street'];
-        $data_address['number'] = trim($_POST['number']) ?? $data['address']['number'];
-        $data_address['district'] = trim($_POST['district']) ?? $data['address']['district'];
-        $data_address['city'] = trim($_POST['city']) ?? $data['address']['city'];
-        $data_address['state'] = trim($_POST['state']) ?? $data['address']['state'];
-        $data_address['code'] = trim($_POST['code']) ?? $data['address']['code'];
+        $data_address['id'] = $address['id'];
+        $data_address['street'] = trim($_POST['street']) ?? $address['street'];
+        $data_address['number'] = trim($_POST['number']) ?? $address['number'];
+        $data_address['district'] = trim($_POST['district']) ?? $address['district'];
+        $data_address['city'] = trim($_POST['city']) ?? $address['city'];
+        $data_address['state'] = trim($_POST['state']) ?? $address['state'];
+        $data_address['code'] = trim($_POST['code']) ?? $address['code'];
 
         $address_id = Address::update($data_address);
-
 
         // dados do condomínio
         $data_condominium['id'] = trim($_POST['id']) ?? $condominio['id'];

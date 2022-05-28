@@ -46,6 +46,9 @@
 
                             <?php
                             foreach ($data['condominiums'] as $key => $value) {
+
+                                $value['address']['street'] = $value['address']['street'] ?? '';
+                                $value['address']['number'] = $value['address']['number'] ?? '';
                             ?>
                                 <tr>
                                     <td>

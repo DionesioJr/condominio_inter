@@ -2,6 +2,13 @@
 class Settings
 {
 
+    private $condominiums_id;
+
+    public function __construct()
+    {
+        $this->condominiums_id = $_SESSION['user']['condominiums_id'];
+    }
+
     public function index()
     {
         $users_id = $_SESSION['user']['id'];
@@ -9,7 +16,7 @@ class Settings
             return redirect('/');
         }
 
-        $data['users'] = User::show($users_id);
+        $data['users'] = User::show($users_id, $this->condominiums_id);
         if (empty($data['users'])) {
             return redirect('/');
         }
@@ -50,6 +57,7 @@ class Settings
         $password = md5($password1);
 
         $result = User::updatePassword($email, $password);
+        
         if (empty($result)) {
             Alert::error("Falha ao tentar atualizar a senha");
         } else {

@@ -1,10 +1,14 @@
 <?php
 class Users
 {
+    private $condominiums_id;
 
     public function __construct()
     {
         $data = $_SESSION;
+
+        $this->condominiums_id = $_SESSION['user']['condominiums_id'];
+
         if (empty($data['user']['is_admin'])) {
             exit;
         }
@@ -13,9 +17,8 @@ class Users
     public function index()
     {
         $data = $_SESSION;
-        $Users = User::index();
+        $Users = User::index($this->condominiums_id);
         $row = array();
-
 
 
         foreach ($Users as $key => $value) {
@@ -54,6 +57,7 @@ class Users
         $data['users']['status_default'] = 1;
         $data['users']['admin_default'] = 1;
 
+
         _Application::applicationView('users/form', $data);
     }
 
@@ -65,7 +69,7 @@ class Users
         $data['button_submit'] = "Editar Usuário";
         $data['action'] = BASE_URL . '/users/update';
 
-        $data['users'] = User::show($id);
+        $data['users'] = User::show($id, $this->condominiums_id);
 
         if (empty($data['users'])) {
             $data['users']['id'] = '';
@@ -100,6 +104,7 @@ class Users
         $data['password'] = md5(trim($_POST['password'])) ?? '';
         $data['status'] = trim($_POST['status']) ?? 1;
         $data['is_admin'] = (int) $_POST['is_admin'];
+        $data['condominiums_id'] = $_SESSION['user']['condominiums_id'];
 
         $result = User::store($data);
 
@@ -137,7 +142,7 @@ class Users
             redirect('users');
         }
 
-        $users = User::show($id);
+        $users = User::show($id, $this->condominiums_id);
 
         $data['id'] = trim($_POST['id'] ?? $users['id']);
         $data['name'] = trim($_POST['name'] ?? $users['name']);
@@ -145,6 +150,7 @@ class Users
         $data['password'] = trim($_POST['password'] ?? $users['password']);
         $data['status'] = trim($_POST['status'] ?? $users['status']);
         $data['is_admin'] = (int) $_POST['is_admin'];
+        $data['condominiums_id'] = (int) $this->condominiums_id;
 
 
         if (empty(trim($_POST['password']))) {

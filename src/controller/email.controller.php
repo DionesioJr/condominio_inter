@@ -28,7 +28,7 @@ class Email
             $mail->setFrom($emailFrom, utf8_decode($data['nameFrom']));
             $mail->addAddress($emailFrom);
             $mail->isHTML(true);
-            $mail->Subject = utf8_decode($data['subject']);
+            $mail->Subject = $data['subject'];
             $mail->Body = utf8_decode($data['body']);
             $mail->send();
 
@@ -57,8 +57,8 @@ class Email
 
         $data['emailFrom'] = $email;
         $data['nameFrom'] = $email;
-        $data['subject'] = 'Atualização da senha';
-        $data['body'] = 'Sua nova senha é: ' . $password;
+        $data['subject'] = 'Atualização da senha - Inter Condomínios';
+        $data['body'] = "Sua nova senha é:  <b>{$password}</b>";
 
         $password = md5($password);
 
@@ -69,13 +69,9 @@ class Email
             Alert::success("Senha atualizada com sucesso");
         }
 
-        var_dump(self::send($data));
-        exit;
-
-
         if (!empty(self::send($data))) {
             Alert::info("Verifique sua caixa de email");
-            redirect('logins/login');
+            redirect('logins');
         } else {
             Alert::info("Falha no envio do email");
             redirectBack();

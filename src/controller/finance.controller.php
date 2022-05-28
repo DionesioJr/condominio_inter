@@ -1,16 +1,17 @@
 <?php
 class Finance
 {
+    private $condominiums_id;
     public function __construct()
     {
-        
+        $this->condominiums_id = $_SESSION['user']['condominiums_id'];
     }
 
 
     public function index()
     {
         $data = $_SESSION;
-        $Users = Financial::index();
+        $Users = Financial::index($this->condominiums_id);
         $row = array();
 
         foreach ($Users as $key => $value) {
@@ -58,8 +59,7 @@ class Finance
         $data['button_submit'] = "Editar financeiro";
         $data['action'] = BASE_URL . '/finance/update';
 
-        $data['financial'] = Financial::show($id);
-
+        $data['financial'] = Financial::show($id, $this->condominiums_id);
 
 
         if (empty($data['financial'])) {
@@ -82,7 +82,7 @@ class Finance
         $data['status']  =  (int) $_POST['status'];
         $data['due_date'] = trim($_POST['due_date'] ?? date("Y-m-d"));
         $data['additional_charge'] = trim($_POST['additional_charge'] ?? '');
-
+        $data['condominiums_id'] = $this->condominiums_id;
         $result = Financial::store($data);
 
         if (empty($result)) {
@@ -108,7 +108,7 @@ class Finance
             redirect('finance');
         }
 
-        $financial = financial::show($id);
+        $financial = financial::show($id, $this->condominiums_id);
         if (empty($financial)) {
             Alert::error("Falha ao atualizar!");
             redirect('finance');

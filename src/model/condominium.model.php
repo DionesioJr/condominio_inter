@@ -7,12 +7,11 @@ class Condominium
     }
 
 
-    static public function index()
+    static public function index($condominiums_id)
     {
         global $DB;
         $row = array();
-        $query = $DB->query("SELECT * from condominiums");
-
+        $query = $DB->query("SELECT * from condominiums where id  = '{$condominiums_id}'");
 
         if (empty($query)) {
             return false;

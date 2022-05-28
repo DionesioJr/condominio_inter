@@ -7,11 +7,11 @@ class Financial
     }
 
 
-    static public function index()
+    static public function index($condominiums_id)
     {
         global $DB;
         $row = array();
-        $query = $DB->query("SELECT * from `financial`");
+        $query = $DB->query("SELECT * from `financial` where condominiums_id = '{$condominiums_id}'");
 
 
         if (empty($query)) {
@@ -24,13 +24,11 @@ class Financial
         return $row;
     }
 
-    static public function show($id)
+    static public function show($id, $condominiums_id)
     {
         global $DB;
         $row = array();
-        $query = $DB->query("SELECT * from `financial` where id = $id");
-
-
+        $query = $DB->query("SELECT * from `financial` where id = $id and condominiums_id = '{$condominiums_id}'");
         $row = $query->fetchAll();
 
         if (empty($row)) {
@@ -43,8 +41,8 @@ class Financial
     static public function store($data)
     {
         global $DB;
-        $query = $DB->query("INSERT INTO `financial` (`name`, `description`, `due_date`, `cost`, `additional_charge`, `status`) 
-        VALUES ('{$data['name']}', '{$data['description']}', '{$data['due_date']}', '{$data['cost']}', '{$data['additional_charge']}', '{$data['status']}');");
+        $query = $DB->query("INSERT INTO `financial` (`name`, `description`, `due_date`, `cost`, `additional_charge`, `status`, `condominiums_id`) 
+        VALUES ('{$data['name']}', '{$data['description']}', '{$data['due_date']}', '{$data['cost']}', '{$data['additional_charge']}', '{$data['status']}', '{$data['condominiums_id']}');");
 
         if (empty($query)) {
             return false;

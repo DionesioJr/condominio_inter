@@ -38,14 +38,6 @@ class Logins
             redirect('logins/create');
         }
 
-        $data_user = array();
-        $data_user['name'] = trim($_POST['user-name']) ?? '';
-        $data_user['email'] = trim($_POST['email']) ?? '';
-        $data_user['password'] = md5(trim($_POST['password'])) ?? '';
-        $data_user['status'] = 1;
-        $data_user['is_admin'] = (int) $_POST['is_admin'] ?? 1;
-        $users_id = User::store($data_user);
-
 
         $data_address['street'] =  ' ';
         $data_address['number'] =  ' ';
@@ -64,6 +56,16 @@ class Logins
         $data_condominium['status'] = 1;
         $data_condominium['address_id'] = $address_id;
         $condominiums_id = Condominium::store($data_condominium);
+
+
+        $data_user = array();
+        $data_user['name'] = trim($_POST['user-name']) ?? '';
+        $data_user['email'] = trim($_POST['email']) ?? '';
+        $data_user['password'] = md5(trim($_POST['password'])) ?? '';
+        $data_user['status'] = 1;
+        $data_user['is_admin'] = (int) $_POST['is_admin'] ?? 1;
+        $data_user['condominiums_id'] = $condominiums_id;
+        $users_id = User::store($data_user);
 
 
         $data_trustee['condominiums_id'] =  $condominiums_id;
